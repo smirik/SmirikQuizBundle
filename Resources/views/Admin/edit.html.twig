@@ -1,0 +1,30 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ 'quiz.edit.page_title'|trans }}{% endblock %}
+
+{% block header %}
+<h1>{{ 'quiz.edit.page_title'|trans }} <small>{{ 'quiz.edit.title.comment'|trans }}</small></h1>
+{% endblock %}
+
+{% form_theme edit_form _self %}
+
+{% block body %}
+
+<form class="form-stacked" action="{{ path('admin_quiz_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    {{ form_widget(edit_form) }}
+    <div class="actions">
+      <input type="submit" class="btn primary large" value="{{ 'quiz.form.actions.edit'|trans }}">
+    </div>
+</form>
+
+<form action="{{ path('admin_quiz_delete', { 'id': entity.id }) }}" method="post">
+{{ form_widget(delete_form) }}
+<div class="well">
+  <a href="{{ path('admin_quiz') }}" class="btn">
+    {{ 'quiz.form.actions.back'|trans }}
+  </a>
+  <input type="submit" class="btn danger" value="{{ 'quiz.form.actions.delete'|trans }}">
+</div>
+</form>
+
+{% endblock %}

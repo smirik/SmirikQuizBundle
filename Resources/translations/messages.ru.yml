@@ -1,0 +1,25 @@
+quiz.list.page_title:    Тесты
+quiz.list.title.comment: список
+quiz.list.id:            Id
+quiz.list.title:         Заголовок
+quiz.list.description:   Описание
+quiz.list.num_questions: Кол-во вопросов
+quiz.list.is_active:     Активен?
+quiz.list.created_at:    Добавлен
+quiz.list.actions:       Действия
+quiz.action.create:      Добавить
+quiz.action.show:        Посмотреть
+quiz.action.edit:        Редактировать
+
+quiz.edit.page_title:    Тесты
+quiz.edit.title.comment: редактировать
+
+quiz.form.Title:         Заголовок
+quiz.form.Description:   Описание
+quiz.form.Time:          Продолжительность
+quiz.form.Num questions: Количество вопросов
+quiz.form.Is active:     Включен?
+
+quiz.form.actions.edit:   Редактировать
+quiz.form.actions.back:   Вернуться
+quiz.form.actions.delete: Удалить

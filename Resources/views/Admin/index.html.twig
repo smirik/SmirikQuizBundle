@@ -1,0 +1,52 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ 'quiz.list.page_title'|trans }}{% endblock %}
+
+{% block header %}
+<h1>{{ 'quiz.list.page_title'|trans }} <small>{{ 'quiz.list.title.comment'|trans }}</small></h1>
+{% endblock %}
+
+{% block body %}
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>{{ 'quiz.list.id'|trans }}</th>
+            <th>{{ 'quiz.list.title'|trans }}</th>
+            <th>{{ 'quiz.list.description'|trans }}</th>
+            <th>{{ 'quiz.list.num_questions'|trans }}</th>
+            <th>{{ 'quiz.list.is_active'|trans }}</th>
+            <th>{{ 'quiz.list.created_at'|trans }}</th>
+            <th>{{ 'quiz.list.actions'|trans }}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('admin_quiz_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.title }}</td>
+            <td>{{ entity.description }}</td>
+            <td>{{ entity.numquestions }}</td>
+            <td>{{ entity.isactive }}</td>
+            <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif%}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('admin_quiz_edit', { 'id': entity.id }) }}">{{ 'quiz.action.edit'|trans }}</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('admin_quiz_new') }}">
+            {{ 'quiz.action.create'|trans }}
+        </a>
+    </li>
+</ul>
+
+{% endblock %}
