@@ -1,6 +1,6 @@
 <?php
 
-namespace Smirik\ContentBundle\DataFixtures\ORM;
+namespace Smirik\QuizBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
