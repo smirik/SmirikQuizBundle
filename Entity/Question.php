@@ -38,21 +38,21 @@ class Question
     /**
      * @var text $text
      *
-     * @ORM\Column(name="text", type="text")
+     * @ORM\Column(name="text", type="text", nullable="true")
      */
     private $text;
 
     /**
      * @var string $type
      *
-     * @ORM\Column(name="type", type="string", length=50)
+     * @ORM\Column(name="type", type="string", length=50, nullable="true")
      */
     private $type;
 
     /**
      * @var string $file
      *
-     * @ORM\Column(name="file", type="string", length=255)
+     * @ORM\Column(name="file", type="string", length=255, nullable="true")
      */
     private $file;
 

@@ -4,6 +4,7 @@ namespace Smirik\QuizBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Smirik\QuizBundle\Model\Quiz as ModelQuiz;
 
 /**
  * Smirik\QuizBundle\Entity\Quiz
@@ -11,7 +12,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="smirik_quiz")
  * @ORM\Entity(repositoryClass="Smirik\QuizBundle\Entity\QuizRepository")
  */
-class Quiz
+class Quiz extends ModelQuiz
 {
     /**
      * @var integer $id
@@ -39,7 +40,7 @@ class Quiz
     /**
      * @var datetime $time
      *
-     * @ORM\Column(name="time", type="datetime")
+     * @ORM\Column(name="time", type="integer")
      */
     private $time;
 

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Smirik\QuizBundle\Entity\UserQuestion
  *
- * @ORM\Table()
+ * @ORM\Table(name="smirik_users_questions")
  * @ORM\Entity
  */
 class UserQuestion

@@ -44,10 +44,16 @@ class Answer
     /**
      * @var string $file
      *
-     * @ORM\Column(name="file", type="string", length=255)
+     * @ORM\Column(name="file", type="string", length=255, nullable="true")
      */
     private $file;
 
+    /**
+     * @var string $is_right
+     *
+     * @ORM\Column(name="is_right", type="string", length=255, nullable="true")
+     */
+    private $is_right;
 
     /**
      * Get id
@@ -137,5 +143,25 @@ class Answer
     public function getQuestion()
     {
         return $this->question;
+    }
+
+    /**
+     * Set is_right
+     *
+     * @param string $isRight
+     */
+    public function setIsRight($isRight)
+    {
+        $this->is_right = $isRight;
+    }
+
+    /**
+     * Get is_right
+     *
+     * @return string 
+     */
+    public function getIsRight()
+    {
+        return $this->is_right;
     }
 }
