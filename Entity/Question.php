@@ -4,6 +4,7 @@ namespace Smirik\QuizBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Smirik\QuizBundle\Model\Question as ModelQuestion;
 
 /**
  * Smirik\QuizBundle\Entity\Question
@@ -11,7 +12,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="smirik_questions")
  * @ORM\Entity(repositoryClass="Smirik\QuizBundle\Entity\QuestionRepository")
  */
-class Question
+class Question extends ModelQuestion
 {
     /**
      * @var integer $id
@@ -78,6 +79,11 @@ class Question
      * @Gedmo\Timestampable(on="update")
      */
     protected $updated_at;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Answer", mappedBy="question", cascade={"all"})
+     */
+    protected $answers;
 
     /**
      * Get id
@@ -247,6 +253,31 @@ class Question
     public function getQuiz()
     {
         return $this->quiz;
+    }
+    
+    public function __construct()
+    {
+        $this->answers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add answers
+     *
+     * @param Smirik\QuizBundle\Entity\Answer $answers
+     */
+    public function addAnswer(\Smirik\QuizBundle\Entity\Answer $answers)
+    {
+        $this->answers[] = $answers;
+    }
+
+    /**
+     * Get answers
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getAnswers()
+    {
+        return $this->answers;
     }
     
 }

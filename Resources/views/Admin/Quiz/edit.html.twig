@@ -6,11 +6,9 @@
 <h1>{{ 'quiz.edit.page_title'|trans }} <small>{{ 'quiz.edit.title.comment'|trans }}</small></h1>
 {% endblock %}
 
-{% form_theme edit_form _self %}
-
 {% block body %}
 
-<form class="form-stacked" action="{{ path('admin_quiz_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+<form class="form-stacked basic" action="{{ path('admin_quiz_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
     {{ form_widget(edit_form) }}
     <div class="actions">
       <input type="submit" class="btn primary large" value="{{ 'quiz.form.actions.edit'|trans }}">

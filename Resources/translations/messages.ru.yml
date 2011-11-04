@@ -1,3 +1,14 @@
+# Base translations
+quiz.form.actions.create: Создать
+quiz.form.actions.edit:   Редактировать
+quiz.form.actions.back:   Вернуться
+quiz.form.actions.delete: Удалить
+
+quiz.form.actions:        Действия
+quiz.form.created_at:     Создан
+
+# Quiz translations
+
 quiz.list.page_title:    Тесты
 quiz.list.title.comment: список
 quiz.list.id:            Id
@@ -20,6 +31,11 @@ quiz.form.Time:          Продолжительность
 quiz.form.Num questions: Количество вопросов
 quiz.form.Is active:     Включен?
 
-quiz.form.actions.edit:   Редактировать
-quiz.form.actions.back:   Вернуться
-quiz.form.actions.delete: Удалить
+# Questions translations
+
+questions.list.page_title:    Вопросы
+questions.list.title.comment: список
+
+questions.list.quiz: Тест
+questions.list.text: Вопрос
+questions.list.type: Тип вопроса

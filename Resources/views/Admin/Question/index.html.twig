@@ -1,0 +1,48 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ 'questions.list.page_title'|trans }}{% endblock %}
+
+{% block header %}
+<h1>{{ 'questions.list.page_title'|trans }} <small>{{ 'questions.list.title.comment'|trans }}</small></h1>
+{% endblock %}
+
+{% block body %}
+
+<table class="records_list">
+  <thead>
+    <tr>
+      <th>{{ 'questions.list.quiz'|trans }}</th>
+      <th>{{ 'questions.list.text'|trans }}</th>
+      <th>{{ 'questions.list.type'|trans }}</th>
+      <th>{{ 'quiz.form.created_at'|trans }}</th>
+      <th>{{ 'quiz.form.actions'|trans }}</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for entity in entities %}
+  <tr>
+    <td>{{ entity.quiz }}</td>
+    <td>{{ entity.text }}</td>
+    <td>{{ entity.type }}</td>
+    <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif%}</td>
+    <td>
+      <ul>
+        <li>
+          <a href="{{ path('admin_questions_edit', { 'id': entity.id }) }}">{{ 'quiz.form.actions.edit'|trans }}</a>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('admin_questions_new') }}">
+            {{ 'quiz.form.actions.create'|trans }}
+        </a>
+    </li>
+</ul>
+
+{% endblock %}
