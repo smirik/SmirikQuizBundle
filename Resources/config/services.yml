@@ -1,0 +1,15 @@
+parameters:
+  quiz.manager.class:     Smirik\QuizBundle\Entity\QuizManager
+  question.manager.class: Smirik\QuizBundle\Entity\QuestionManager
+  user_quiz.manager.class: Smirik\QuizBundle\Entity\UserQuizManager
+
+services:
+  quiz.manager:
+    class:     %quiz.manager.class%
+    arguments: ["@doctrine.orm.entity_manager", Smirik\QuizBundle\Entity\Quiz]
+  question.manager:
+    class:     %question.manager.class%
+    arguments: ["@doctrine.orm.entity_manager", Smirik\QuizBundle\Entity\Question]
+  user_quiz.manager:
+    class:     %user_quiz.manager.class%
+    arguments: ["@doctrine.orm.entity_manager", Smirik\QuizBundle\Entity\UserQuiz]

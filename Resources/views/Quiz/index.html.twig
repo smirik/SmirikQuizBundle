@@ -1,0 +1,27 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ 'quiz.index.page_title'|trans }}{% endblock %}
+
+{% block header %}
+<h1>{{ 'quiz.index.page_title'|trans }} <small>{{ 'quiz.index.title.comment'|trans }}</small></h1>
+{% endblock %}
+
+{% block body %}
+
+<table>
+  <tr>
+    <th>{{ 'quiz.index.table.header.quiz'|trans }}</th>
+    <th>{{ 'quiz.index.table.header.start'|trans }}</th>
+  </tr>
+  
+  {% for quiz in quizes %}
+    <tr>
+      <td>{{ quiz.title }}</td>
+      <td><a href="{{ path('quiz_start', { 'quiz_id': quiz.id }) }}">{{ 'quiz.index.table.start_link'|trans }}</a></td>
+    </tr>
+  {% endfor %}
+  
+</table>
+Index
+
+{% endblock %}

@@ -41,13 +41,19 @@ class UserQuiz
      */
     private $quiz;
     
-
     /**
      * @var integer $quiz_id
      *
-     * @ORM\Column(name="quiz_id", type="integer")
+     * @ORM\Column(name="quiz_id", type="integer", nullable="true")
      */
     private $quiz_id;
+
+    /**
+     * @var string $quiz_id
+     *
+     * @ORM\Column(name="questions", type="string", length=255)
+     */
+    private $questions;
 
     /**
      * @var integer $current
@@ -59,35 +65,35 @@ class UserQuiz
     /**
      * @var integer $num_right_answers
      *
-     * @ORM\Column(name="num_right_answers", type="integer")
+     * @ORM\Column(name="num_right_answers", type="integer", nullable="true")
      */
     private $num_right_answers;
 
     /**
      * @var datetime $started_at
      *
-     * @ORM\Column(name="started_at", type="datetime")
+     * @ORM\Column(name="started_at", type="datetime", nullable="true")
      */
     private $started_at;
 
     /**
      * @var datetime $stopped_at
      *
-     * @ORM\Column(name="stopped_at", type="datetime")
+     * @ORM\Column(name="stopped_at", type="datetime", nullable="true")
      */
     private $stopped_at;
 
     /**
      * @var boolean $is_active
      *
-     * @ORM\Column(name="is_active", type="boolean")
+     * @ORM\Column(name="is_active", type="boolean", nullable="true")
      */
     private $is_active;
 
     /**
      * @var boolean $is_closed
      *
-     * @ORM\Column(name="is_closed", type="boolean")
+     * @ORM\Column(name="is_closed", type="boolean", nullable="true")
      */
     private $is_closed;
 
@@ -355,5 +361,25 @@ class UserQuiz
     public function getUpdatedAt()
     {
         return $this->updated_at;
+    }
+
+    /**
+     * Set questions
+     *
+     * @param string $questions
+     */
+    public function setQuestions($questions)
+    {
+        $this->questions = $questions;
+    }
+
+    /**
+     * Get questions
+     *
+     * @return string 
+     */
+    public function getQuestions()
+    {
+        return $this->questions;
     }
 }

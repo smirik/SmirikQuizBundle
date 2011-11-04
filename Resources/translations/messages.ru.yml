@@ -4,26 +4,26 @@ quiz.form.actions.edit:   Редактировать
 quiz.form.actions.back:   Вернуться
 quiz.form.actions.delete: Удалить
 
-quiz.form.actions:        Действия
-quiz.form.created_at:     Создан
+admin.quiz.form.actions:        Действия
+admin.quiz.form.created_at:     Создан
 
 # Quiz translations
 
-quiz.list.page_title:    Тесты
-quiz.list.title.comment: список
-quiz.list.id:            Id
-quiz.list.title:         Заголовок
-quiz.list.description:   Описание
-quiz.list.num_questions: Кол-во вопросов
-quiz.list.is_active:     Активен?
-quiz.list.created_at:    Добавлен
-quiz.list.actions:       Действия
-quiz.action.create:      Добавить
-quiz.action.show:        Посмотреть
-quiz.action.edit:        Редактировать
+admin.quiz.list.page_title:    Тесты
+admin.quiz.list.title.comment: список
+admin.quiz.list.id:            Id
+admin.quiz.list.title:         Заголовок
+admin.quiz.list.description:   Описание
+admin.quiz.list.num_questions: Кол-во вопросов
+admin.quiz.list.is_active:     Активен?
+admin.quiz.list.created_at:    Добавлен
+admin.quiz.list.actions:       Действия
+admin.quiz.action.create:      Добавить
+admin.quiz.action.show:        Посмотреть
+admin.quiz.action.edit:        Редактировать
 
-quiz.edit.page_title:    Тесты
-quiz.edit.title.comment: редактировать
+admin.quiz.edit.page_title:    Тесты
+admin.quiz.edit.title.comment: редактировать
 
 quiz.form.Title:         Заголовок
 quiz.form.Description:   Описание
@@ -33,9 +33,9 @@ quiz.form.Is active:     Включен?
 
 # Questions translations
 
-questions.list.page_title:    Вопросы
-questions.list.title.comment: список
+admin.questions.list.page_title:    Вопросы
+admin.questions.list.title.comment: список
 
-questions.list.quiz: Тест
-questions.list.text: Вопрос
-questions.list.type: Тип вопроса
+admin.questions.list.quiz: Тест
+admin.questions.list.text: Вопрос
+admin.questions.list.type: Тип вопроса

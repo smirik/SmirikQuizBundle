@@ -3,6 +3,7 @@
 namespace Smirik\QuizBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Smirik\QuizBundle\Entity\Question;
 
 /**
  * QuestionRepository
@@ -12,4 +13,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class QuestionRepository extends EntityRepository
 {
+  
+  /**
+   * Get total number of questions for quiz
+   * @param Smirik\QuizBundle\Entity\Quiz $quiz
+   * @return integer
+   */
+  public function getNumberOfQuestionsForQuiz($quiz)
+  {
+    $query = $this->getEntityManager()->createQuery('SELECT COUNT(q.id) FROM SmirikQuizBundle:Question q');
+    $count = $query->getSingleScalarResult();
+    return $count;
+  }
+  
 }
