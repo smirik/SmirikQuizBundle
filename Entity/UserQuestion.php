@@ -3,6 +3,7 @@
 namespace Smirik\QuizBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Smirik\QuizBundle\Model\UserQuestion as ModelUserQuestion;
 
 /**
  * Smirik\QuizBundle\Entity\UserQuestion
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="smirik_users_questions")
  * @ORM\Entity
  */
-class UserQuestion
+class UserQuestion extends ModelUserQuestion
 {
     /**
      * @var integer $id
@@ -29,7 +30,7 @@ class UserQuestion
     private $user_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Smirik\UserBundle\Entity\User", inversedBy="fos_user")
+     * @ORM\ManyToOne(targetEntity="Smirik\UserBundle\Entity\User", inversedBy="fos_user", cascade={"all"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
@@ -42,7 +43,7 @@ class UserQuestion
     private $quiz_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Quiz", inversedBy="smirik_quiz")
+     * @ORM\ManyToOne(targetEntity="Quiz", inversedBy="smirik_quiz", cascade={"all"})
      * @ORM\JoinColumn(name="quiz_id", referencedColumnName="id")
      */
     private $quiz;
@@ -55,29 +56,48 @@ class UserQuestion
     private $question_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Question", inversedBy="smirik_questions")
+     * @ORM\ManyToOne(targetEntity="Question", inversedBy="smirik_questions", cascade={"all"})
      * @ORM\JoinColumn(name="question_id", referencedColumnName="id")
      */
     private $question;
 
     /**
-     * @var integer $answer
+     * @var integer $user_quiz_id
      *
-     * @ORM\Column(name="answer", type="integer")
+     * @ORM\Column(name="user_quiz_id", type="integer")
+     */
+    private $user_quiz_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="UserQuiz", inversedBy="smirik_users_quiz", cascade={"all"})
+     * @ORM\JoinColumn(name="user_quiz_id", referencedColumnName="id")
+     */
+    private $user_quiz;
+
+    /**
+     * @var integer $answer_id
+     *
+     * @ORM\Column(name="answer_id", type="integer", nullable="true")
+     */
+    private $answer_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Answer", inversedBy="smirik_answers", cascade={"all"})
+     * @ORM\JoinColumn(name="answer_id", referencedColumnName="id")
      */
     private $answer;
 
     /**
      * @var boolean $is_right
      *
-     * @ORM\Column(name="is_right", type="boolean")
+     * @ORM\Column(name="is_right", type="boolean", nullable="true")
      */
     private $is_right;
 
     /**
      * @var boolean $is_closed
      *
-     * @ORM\Column(name="is_closed", type="boolean")
+     * @ORM\Column(name="is_closed", type="boolean", nullable="true")
      */
     private $is_closed;
 
@@ -150,26 +170,6 @@ class UserQuestion
     public function getQuestionId()
     {
         return $this->question_id;
-    }
-
-    /**
-     * Set answer
-     *
-     * @param integer $answer
-     */
-    public function setAnswer($answer)
-    {
-        $this->answer = $answer;
-    }
-
-    /**
-     * Get answer
-     *
-     * @return integer 
-     */
-    public function getAnswer()
-    {
-        return $this->answer;
     }
 
     /**
@@ -271,4 +271,86 @@ class UserQuestion
     {
         return $this->question;
     }
+
+
+    /**
+     * Set user_quiz_id
+     *
+     * @param integer $userQuizId
+     */
+    public function setUserQuizId($userQuizId)
+    {
+        $this->user_quiz_id = $userQuizId;
+    }
+
+    /**
+     * Get user_quiz_id
+     *
+     * @return integer 
+     */
+    public function getUserQuizId()
+    {
+        return $this->user_quiz_id;
+    }
+
+    /**
+     * Set user_quiz
+     *
+     * @param Smirik\QuizBundle\Entity\UserQuiz $userQuiz
+     */
+    public function setUserQuiz(\Smirik\QuizBundle\Entity\UserQuiz $userQuiz)
+    {
+        $this->user_quiz = $userQuiz;
+    }
+
+    /**
+     * Get user_quiz
+     *
+     * @return Smirik\QuizBundle\Entity\UserQuiz 
+     */
+    public function getUserQuiz()
+    {
+        return $this->user_quiz;
+    }
+
+    /**
+     * Set answer_id
+     *
+     * @param integer $answerId
+     */
+    public function setAnswerId($answerId)
+    {
+        $this->answer_id = $answerId;
+    }
+
+    /**
+     * Get answer_id
+     *
+     * @return integer 
+     */
+    public function getAnswerId()
+    {
+        return $this->answer_id;
+    }
+
+    /**
+     * Set answer
+     *
+     * @param Smirik\QuizBundle\Entity\Answer $answer
+     */
+    public function setAnswer(\Smirik\QuizBundle\Entity\Answer $answer)
+    {
+        $this->answer = $answer;
+    }
+
+    /**
+     * Get answer
+     *
+     * @return Smirik\QuizBundle\Entity\Answer 
+     */
+    public function getAnswer()
+    {
+        return $this->answer;
+    }
+    
 }

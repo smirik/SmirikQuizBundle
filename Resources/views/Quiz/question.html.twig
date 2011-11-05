@@ -3,24 +3,30 @@
 {% block title %}{{ 'quiz.question.page_title'|trans }}{% endblock %}
 
 {% block header %}
-<h1>{{ 'quiz.question.page_title'|trans }} <small>{{ 'quiz.question.title.comment'|trans }}</small></h1>
+<h1>{{ quiz.title }} <small>{{ 'quiz.question.title.comment'|trans }}</small></h1>
 {% endblock %}
 
 {% block body %}
 
-<h3>{{ question.text }}</h3>
+<h3>#{{number+1}}. {{ question.text }}</h3>
 
-<form method="post" action="">
-  {% for answer in question.answers %}
-  <input type="radio" name="answer" value="{{ answer.id }}"> {{ answer.title }}<br />
-  {% endfor %}
+<form method="post" action="{{ path('quiz_check') }}">      
+  <div class="question">
+    <input type="hidden" name="question_id" value="{{ question.id }}">
+    <input type="hidden" name="user_quiz_id" value="{{ user_quiz.id }}">
+    <input type="hidden" name="number" value="{{ number }}">
+    {% for answer in question.answers %}
+    <input type="radio" name="answer_id" value="{{ answer.id }}" required {% if current_answer == answer.id %}checked{% endif %}> {{ answer.title }}<br />
+    {% endfor %} 
+    <button class="btn large primary">{{ 'quiz.question.submit'|trans }}</button>
+   </div>
 </form>
 
 {% if number > 0 %}
-  <a href="{{ path('quiz_go', {'uq_id': user_quiz.id, 'number': 0 }) }}" class="btn">{{ 'quiz.question.previous'|trans }}</a>
+  <a href="{{ path('quiz_go', {'uq_id': user_quiz.id, 'number': number-1 }) }}" class="btn">{{ 'quiz.question.previous'|trans }}</a>
 {% endif %}
-{% if number < total %}
-  <a href="{{ path('quiz_go', {'uq_id': user_quiz.id, 'number': 0 }) }}" class="btn">{{ 'quiz.question.next'|trans }}</a>
+{% if (number+1) < total %}
+  <a href="{{ path('quiz_go', {'uq_id': user_quiz.id, 'number': number+1 }) }}" class="btn">{{ 'quiz.question.next'|trans }}</a>
 {% endif %}
 
 {% endblock %}

@@ -31,7 +31,7 @@ class Question extends ModelQuestion
     private $quiz_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Quiz", inversedBy="smirik_quiz")
+     * @ORM\ManyToOne(targetEntity="Quiz", inversedBy="smirik_quiz", cascade={"all"})
      * @ORM\JoinColumn(name="quiz_id", referencedColumnName="id")
      */
     private $quiz;

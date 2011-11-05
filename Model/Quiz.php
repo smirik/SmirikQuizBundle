@@ -12,10 +12,10 @@ class Quiz
      */
     
   }
- 
+  
   public function __toString()
   {
     return $this->getTitle();
   }
-  
+    
 }

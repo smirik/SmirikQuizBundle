@@ -4,6 +4,7 @@ namespace Smirik\QuizBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Smirik\QuizBundle\Model\UserQuiz as ModelUserQuiz;
 
 /**
  * Smirik\QuizBundle\Entity\UserQuiz
@@ -11,7 +12,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="smirik_users_quiz")
  * @ORM\Entity
  */
-class UserQuiz
+class UserQuiz extends ModelUserQuiz
 {
     /**
      * @var integer $id
@@ -30,13 +31,13 @@ class UserQuiz
     private $user_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Smirik\UserBundle\Entity\User", inversedBy="fos_user")
+     * @ORM\ManyToOne(targetEntity="Smirik\UserBundle\Entity\User", inversedBy="fos_user", cascade={"all"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Quiz", inversedBy="smirik_quiz")
+     * @ORM\ManyToOne(targetEntity="Quiz", inversedBy="smirik_quiz", cascade={"all"})
      * @ORM\JoinColumn(name="quiz_id", referencedColumnName="id")
      */
     private $quiz;
@@ -54,6 +55,11 @@ class UserQuiz
      * @ORM\Column(name="questions", type="string", length=255)
      */
     private $questions;
+
+    /**
+     * @ORM\OneToMany(targetEntity="UserQuestion", mappedBy="user_quiz", cascade={"all"})
+     */
+    private $users_questions;
 
     /**
      * @var integer $current
@@ -381,5 +387,29 @@ class UserQuiz
     public function getQuestions()
     {
         return $this->questions;
+    }
+    public function __construct()
+    {
+        $this->users_questions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add users_questions
+     *
+     * @param Smirik\QuizBundle\Entity\UserQuestion $usersQuestions
+     */
+    public function addUserQuestion(\Smirik\QuizBundle\Entity\UserQuestion $usersQuestions)
+    {
+        $this->users_questions[] = $usersQuestions;
+    }
+
+    /**
+     * Get users_questions
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getUsersQuestions()
+    {
+        return $this->users_questions;
     }
 }

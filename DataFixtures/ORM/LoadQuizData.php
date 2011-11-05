@@ -17,7 +17,7 @@ class LoadQuizData extends AbstractFixture implements OrderedFixtureInterface
     $quiz->setDescription('This quiz was created just for ... tests');
     $quiz->setTime(10*60);
     $quiz->setIsActive(true);
-    $quiz->setNumQuestions(5);
+    $quiz->setNumQuestions(3);
     
     $manager->persist($quiz);
     $manager->flush();

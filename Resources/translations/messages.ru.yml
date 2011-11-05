@@ -39,3 +39,31 @@ admin.questions.list.title.comment: список
 admin.questions.list.quiz: Тест
 admin.questions.list.text: Вопрос
 admin.questions.list.type: Тип вопроса
+
+# Quiz frontend
+
+# index page
+quiz.index.page_title:          Список тестов
+quiz.index.title.comment:       доступных для прохождения
+quiz.index.table.header.quiz:   Тест
+quiz.index.table.header.start:  Действие
+quiz.index.table.start_link:    Начать
+quiz.index.table.continue_link: Продолжить
+
+# start page
+quiz.start.page_title:    Начало
+quiz.start.title.comment: теста
+quiz.start.start_link:    Поехали!
+
+# question page
+quiz.question.title.comment: прохождение
+quiz.question.submit:        Ответить
+quiz.question.previous:      Назад
+quiz.question.next:          Вперёд
+
+# prefinal page
+quiz.prefinal.page_title: Завершение теста
+quiz.prefinal.title.comment: последний шаг
+quiz.prefinal.note:       "Вы ответили на все вопросы теста. Если Вы нажмёте кнопку Завершить, то тест закончится, и Вы не сможете изменить результат. Если Вы не уверены в каком-либо вопросе, нажмите кнопку Вернуться."
+quiz.prefinal.back:   Вернуться
+quiz.prefinal.finish: Закончить тест
