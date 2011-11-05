@@ -53,7 +53,7 @@ class Answer
      *
      * @ORM\Column(name="is_right", type="string", length=255, nullable="true")
      */
-    private $is_right;
+    private $is_right = false;
 
     /**
      * Get id

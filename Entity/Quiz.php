@@ -42,7 +42,7 @@ class Quiz extends ModelQuiz
      *
      * @ORM\Column(name="time", type="integer")
      */
-    private $time;
+    private $time = 0;
 
     /**
      * @var integer $num_questions
@@ -56,7 +56,14 @@ class Quiz extends ModelQuiz
      *
      * @ORM\Column(name="is_active", type="boolean", nullable=true)
      */
-    private $is_active;
+    private $is_active = true;
+
+    /**
+     * @var boolean $is_opened
+     *
+     * @ORM\Column(name="is_opened", type="boolean", nullable=true)
+     */
+    private $is_opened = true;
 
     /**
      * @var date $created_at
@@ -222,5 +229,25 @@ class Quiz extends ModelQuiz
     public function getUpdatedAt()
     {
         return $this->updated_at;
+    }
+
+    /**
+     * Set is_opened
+     *
+     * @param boolean $isOpened
+     */
+    public function setIsOpened($isOpened)
+    {
+        $this->is_opened = $isOpened;
+    }
+
+    /**
+     * Get is_opened
+     *
+     * @return boolean 
+     */
+    public function getIsOpened()
+    {
+        return $this->is_opened;
     }
 }

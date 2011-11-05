@@ -21,8 +21,11 @@ class QuestionRepository extends EntityRepository
    */
   public function getNumberOfQuestionsForQuiz($quiz)
   {
-    $query = $this->getEntityManager()->createQuery('SELECT COUNT(q.id) FROM SmirikQuizBundle:Question q');
-    $count = $query->getSingleScalarResult();
+    $count = $this->getEntityManager()->createQuery(
+                    'SELECT COUNT(q.id) FROM SmirikQuizBundle:Question q
+                     WHERE (q.quiz_id = :quiz_id)')
+                  ->setParameter('quiz_id', $quiz->getId())
+                  ->getSingleScalarResult();
     return $count;
   }
   

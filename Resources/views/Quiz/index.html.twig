@@ -17,11 +17,16 @@
   {% for quiz in quizes %}
     <tr>
       <td>{{ quiz.title }}</td>
-      <td><a href="{{ path('quiz_start', { 'quiz_id': quiz.id }) }}">{{ 'quiz.index.table.start_link'|trans }}</a></td>
+      <td>
+        {% if users_quiz[quiz.id] %}
+          <a href="{{ path('quiz_go', {'uq_id': users_quiz[quiz.id].id, 'number': users_quiz[quiz.id].current }) }}" class="btn">{{ 'quiz.index.table.continue_link'|trans }}</a>
+        {% else %}
+          <a href="{{ path('quiz_start', { 'quiz_id': quiz.id }) }}" class="btn">{{ 'quiz.index.table.start_link'|trans }}</a>
+        {% endif %}
+      </td>
     </tr>
   {% endfor %}
   
 </table>
-Index
 
 {% endblock %}

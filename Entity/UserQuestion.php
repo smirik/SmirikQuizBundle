@@ -92,14 +92,14 @@ class UserQuestion extends ModelUserQuestion
      *
      * @ORM\Column(name="is_right", type="boolean", nullable="true")
      */
-    private $is_right;
+    private $is_right = false;
 
     /**
      * @var boolean $is_closed
      *
      * @ORM\Column(name="is_closed", type="boolean", nullable="true")
      */
-    private $is_closed;
+    private $is_closed = false;
 
 
     /**

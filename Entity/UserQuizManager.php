@@ -33,15 +33,31 @@ class UserQuizManager
    * @param $user
    * @return Smirik\QuizBundle\Entity\UserQuiz|false
    */
-  public function getActiveQuizForUser($user)
+  public function getActiveQuizForUser($user, $quiz)
   {
-    $uq = $this->repository->createQueryBuilder('uq')
-      ->where('(uq.user_id = :user_id) AND (uq.is_active = 1) AND (uq.is_closed = 0)')
-      ->setParameter('user_id', $user->getId())
-      ->setMaxResults(1)
-      ->getQuery()
-      ->getResult();
-    if ((isset($uq[0])) && ($uq[0]))
+    $uq = $this->repository->createQueryBuilder('uq');
+    
+    if ($quiz->getTime() != 0)
+    {
+      /**
+       * @todo hook. Doctrine developers didn't implement TIMEDIFF support. So we need in a ... hook!
+       * Let's calculated possible started_at range from current time ($diff)
+       */
+      $now = time();
+      $diff = date('Y-m-d H:i:s', $now-$quiz->getTime());
+      $uq->where('(uq.user_id = :user_id) AND (uq.quiz_id = :quiz_id) AND (uq.started_at > :time) AND (uq.is_active = 1) AND (uq.is_closed = 0)')
+         ->setParameter('time', $diff);
+    } else
+    {
+      $uq->where('(uq.user_id = :user_id) AND (uq.quiz_id = :quiz_id) AND (uq.is_active = 1) AND (uq.is_closed = 0)');
+    }
+      
+    $uq = $uq->setParameter('user_id', $user->getId())
+             ->setParameter('quiz_id', $quiz->getId())
+             ->setMaxResults(1)
+             ->getQuery()
+             ->getResult();
+    if (isset($uq[0]) && $uq[0])
     {
       return $uq[0];
     }

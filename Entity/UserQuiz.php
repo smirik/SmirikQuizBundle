@@ -66,7 +66,7 @@ class UserQuiz extends ModelUserQuiz
      *
      * @ORM\Column(name="current", type="integer")
      */
-    private $current;
+    private $current = 0;
 
     /**
      * @var integer $num_right_answers
@@ -94,14 +94,14 @@ class UserQuiz extends ModelUserQuiz
      *
      * @ORM\Column(name="is_active", type="boolean", nullable="true")
      */
-    private $is_active;
+    private $is_active = true;
 
     /**
      * @var boolean $is_closed
      *
      * @ORM\Column(name="is_closed", type="boolean", nullable="true")
      */
-    private $is_closed;
+    private $is_closed = false;
 
     /**
      * @var date $created_at

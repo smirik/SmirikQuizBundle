@@ -29,10 +29,20 @@ class QuizController extends Controller
   {
     $user = $this->container->get('security.context')->getToken()->getUser();
     $qm   = $this->get('quiz.manager');
+    $uqm  = $this->get('user_quiz.manager');
 
     $quizes = $qm->getAvaliableQuizes($user);
+    $users_quiz = array();
+    /**
+     * @todo too much SQL queries
+     */
+    foreach ($quizes as $quiz)
+    {
+      $users_quiz[$quiz->getId()] = $uqm->getActiveQuizForUser($user, $quiz);
+    }
     return array(
-      'quizes' => $quizes,
+      'quizes'     => $quizes,
+      'users_quiz' => $users_quiz,
     );
   }
 
@@ -52,14 +62,13 @@ class QuizController extends Controller
     /**
      * @todo validate $quiz_id
      */
-
     $quiz      = $qm->find($quiz_id);
     $questions = $qum->getRandomQuestionsForQuiz($quiz, $quiz->getNumQuestions());
 
     /**
      * Creating UserQuiz
      */
-    $user_quiz = $uqm->getActiveQuizForUser($user);
+    $user_quiz = $uqm->getActiveQuizForUser($user, $quiz);
     if (!$user_quiz)
     {
       $user_quiz = $uqm->create($user, $quiz, $questions, $em);

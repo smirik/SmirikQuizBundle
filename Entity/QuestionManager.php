@@ -37,7 +37,6 @@ class QuestionManager
   public function getRandomQuestionsForQuiz($quiz, $num = 3)
   {
     $total_num = $this->repository->getNumberOfQuestionsForQuiz($quiz);
-    
     /**
      * If there is no enough questions
      */
@@ -60,7 +59,6 @@ class QuestionManager
         $counter++;
       }
     }
-    
     /**
      * Get questions with given offset
      * @todo speed up
@@ -77,7 +75,7 @@ class QuestionManager
         ->getResult();
       array_push($questions, $question[0]);
     }
-    
+
     return $questions;
   }
   

@@ -17,12 +17,26 @@ class LoadQuizData extends AbstractFixture implements OrderedFixtureInterface
     $quiz->setDescription('This quiz was created just for ... tests');
     $quiz->setTime(10*60);
     $quiz->setIsActive(true);
+    $quiz->setIsOpened(true);
     $quiz->setNumQuestions(3);
     
     $manager->persist($quiz);
     $manager->flush();
     
     $this->addReference('test_quiz', $quiz);
+
+    $quiz = new Quiz();
+    $quiz->setTitle('Test Quiz #2 without time');
+    $quiz->setDescription('This quiz was created just for ... tests without time');
+    $quiz->setTime(0);
+    $quiz->setIsActive(true);
+    $quiz->setIsOpened(true);
+    $quiz->setNumQuestions(3);
+    
+    $manager->persist($quiz);
+    $manager->flush();
+    
+    $this->addReference('test_quiz_without_time', $quiz);
     
   }
 
