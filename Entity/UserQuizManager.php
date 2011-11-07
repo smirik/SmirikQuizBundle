@@ -31,6 +31,7 @@ class UserQuizManager
   /**
    * Get UserQuiz by $user
    * @param $user
+   * @param Smirik\QuizBundle\Entity\Quiz $quiz
    * @return Smirik\QuizBundle\Entity\UserQuiz|false
    */
   public function getActiveQuizForUser($user, $quiz)
@@ -62,6 +63,69 @@ class UserQuizManager
       return $uq[0];
     }
     return false;
+  }
+  
+  /**
+   * Get array of UserQuiz by $user. With enabled $close close all old quizes.
+   * @param $user
+   * @param boolean $close
+   * @param EntityManager $em
+   * @return array|false
+   */
+  public function getAllActiveQuizForUser($user, $close = false, $em = false)
+  {
+    /**
+     * @todo create repository method
+     * @todo add time diff to DB query
+     * @todo get objects with joined quiz
+     */
+    //$active_quiz = $this->repository->getActiveQuizForUser($user);
+    $active_quiz = $this->repository->findBy(array(
+      'user_id' => $user->getId(),
+      'is_active' => true,
+      'is_closed' => false,
+    ));
+    $now = new \DateTime('now');
+    foreach ($active_quiz as $key => $u_quiz)
+    {
+      $diff = $now->getTimeStamp() - $u_quiz->getStartedAt()->getTimeStamp();
+      if ($diff > $u_quiz->getQuiz()->getTime())
+      {
+        /**
+         * If there is an option "close old quiz"
+         */
+        if ($close)
+        {
+          $u_quiz->setIsClosed(true);
+          $em->persist($u_quiz);
+          $em->flush();
+        }
+        unset($active_quiz[$key]);
+      }
+    }
+    
+    if (count($active_quiz) > 0)
+    {
+      return $active_quiz;
+    }
+    return false;
+  }
+  
+  /**
+   * Get all completed quizes 
+   * @param $user
+   * @return array
+   */
+  public function getAllCompletedQuizForUser($user)
+  {
+    $closed_quiz = $this->repository->findBy(array(
+      'user_id' => $user->getId(),
+      'is_active' => true,
+      'is_closed' => true,
+    ), array(
+      'started_at' => 'DESC',
+    ));
+    return $closed_quiz;
   }
 
   /**

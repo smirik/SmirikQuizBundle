@@ -47,6 +47,42 @@ class QuizController extends Controller
   }
 
   /**
+   * List of active quized
+   * @Route("/my", name="quiz_my")
+   * @Template("SmirikQuizBundle:Quiz:my.html.twig", vars={"get"})
+   */
+  public function myAction()
+  {
+    $user = $this->container->get('security.context')->getToken()->getUser();
+    $qm   = $this->get('quiz.manager');
+    $uqm  = $this->get('user_quiz.manager');
+    $em = $this->getDoctrine()->getEntityManager();
+    
+    $active_quiz = $uqm->getAllActiveQuizForUser($user, true, $em);
+    /**
+     * Get quiz ids for active quizes
+     */
+    $active_quiz_ids = array();
+    if ($active_quiz)
+    {
+      foreach ($active_quiz as $quiz)
+      {
+        $active_quiz_ids[] = $quiz->getQuizId();
+      }
+    }
+    
+    $avaliable_quiz = $qm->getAvaliableQuizes($user);
+    $completed_users_quiz = $uqm->getAllCompletedQuizForUser($user);
+    
+    return array(
+      'users_quiz'      => $active_quiz,
+      'active_quiz_ids' => $active_quiz_ids,
+      'avaliable_quiz'  => $avaliable_quiz,
+      'completed_users_quiz'  => $completed_users_quiz,
+    );
+  }
+
+  /**
    * Start new quiz for current user
    * @Route("/start/{quiz_id}", name="quiz_start")
    * @Template("SmirikQuizBundle:Quiz:start.html.twig", vars={"get"})

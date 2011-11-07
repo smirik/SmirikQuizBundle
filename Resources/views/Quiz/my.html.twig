@@ -1,0 +1,76 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ 'quiz.my.page_title'|trans }}{% endblock %}
+
+{% block header %}
+<h1>{{ 'quiz.my.page_title'|trans }} <small>{{ 'quiz.my.title.comment'|trans }}</small></h1>
+{% endblock %}
+
+{% block body %}
+
+{% if users_quiz %}
+<h2>{{ 'quiz.my.active_tests'|trans }}</h2>
+<table>
+  <tr>
+    <th>{{ 'quiz.index.table.header.quiz'|trans }}</th>
+    <th>{{ 'quiz.index.table.header.start'|trans }}</th>
+  </tr>
+  {% for quiz in users_quiz %}
+    <tr>
+      <td>{{ quiz.quiz.title }}</td>
+      <td width="100">
+        <a href="{{ path('quiz_go', {'uq_id': quiz.id, 'number': quiz.current }) }}" class="btn">{{ 'quiz.index.table.continue_link'|trans }}</a>
+      </td>
+    </tr>
+  {% endfor %}
+  
+</table>
+{% endif %}
+
+<h2>{{ 'quiz.my.avaliable_tests'|trans }}</h2>
+
+{% if avaliable_quiz %}
+<table class="zebra-striped">
+  <tr>
+    <th>{{ 'quiz.index.table.header.quiz'|trans }}</th>
+    <th>{{ 'quiz.index.table.header.start'|trans }}</th>
+  </tr>
+  
+  {% for quiz in avaliable_quiz %}
+    {% if (quiz.id not in active_quiz_ids) %}
+    <tr>
+      <td>{{ quiz.title }}</td>
+      <td width="100">
+        <a href="{{ path('quiz_start', { 'quiz_id': quiz.id }) }}" class="btn">{{ 'quiz.index.table.start_link'|trans }}</a>
+      </td>
+    </tr>
+    {% endif %}
+  {% endfor %}
+</table>
+{% endif %}
+
+{% if completed_users_quiz %}
+<h2>{{ 'quiz.my.completed_tests'|trans }}</h2>
+<table class="zebra-striped">
+  <tr>
+    <th>{{ 'quiz.index.table.header.quiz'|trans }}</th>
+    <th>{{ 'quiz.my.table.header.num_right_answers'|trans }}</th>
+    <th>{{ 'quiz.my.table.header.percent'|trans }}</th>
+    <th>{{ 'quiz.my.table.header.started_at'|trans }}</th>
+  </tr>
+  
+  {% for uquiz in completed_users_quiz %}
+    <tr>
+      <td>{{ uquiz.quiz.title }}</td>
+      <td>{{ uquiz.numrightanswers}} / {{ uquiz.quiz.numquestions}}</td>
+      <td>{{ uquiz.numrightanswers * 100 // uquiz.quiz.numquestions}}%</td>
+      <td>{{ uquiz.startedat.format('H:i, Y-m-d') }}</td>
+    </tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+
+<a href="{{ path('quiz_index') }}">{{ 'quiz.index.link'|trans }}</a>
+
+{% endblock %}

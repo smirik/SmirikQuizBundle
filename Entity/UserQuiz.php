@@ -10,7 +10,7 @@ use Smirik\QuizBundle\Model\UserQuiz as ModelUserQuiz;
  * Smirik\QuizBundle\Entity\UserQuiz
  *
  * @ORM\Table(name="smirik_users_quiz")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Smirik\QuizBundle\Entity\UserQuizRepository")
  */
 class UserQuiz extends ModelUserQuiz
 {
@@ -206,7 +206,11 @@ class UserQuiz extends ModelUserQuiz
      */
     public function getNumRightAnswers()
     {
-        return $this->num_right_answers;
+      if (is_null($this->num_right_answers))
+      {
+        return 0;
+      }
+      return $this->num_right_answers;
     }
 
     /**

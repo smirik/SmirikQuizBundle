@@ -43,12 +43,23 @@ admin.questions.list.type: Тип вопроса
 # Quiz frontend
 
 # index page
+quiz.index.link:                Список тестов
 quiz.index.page_title:          Список тестов
 quiz.index.title.comment:       доступных для прохождения
 quiz.index.table.header.quiz:   Тест
 quiz.index.table.header.start:  Действие
 quiz.index.table.start_link:    Начать
 quiz.index.table.continue_link: Продолжить
+quiz.index.my_link:             Мои тесты
+# my quiz page
+quiz.my.page_title: Мои тесты
+quiz.my.title.comment: cписок
+quiz.my.active_tests: Активные тесты
+quiz.my.avaliable_tests: Доступные тесты
+quiz.my.completed_tests: Пройденные тесты
+quiz.my.table.header.num_right_answers: Правильных ответов
+quiz.my.table.header.percent: %
+quiz.my.table.header.started_at: Дата прохождения
 
 # start page
 quiz.start.page_title:    Начало
