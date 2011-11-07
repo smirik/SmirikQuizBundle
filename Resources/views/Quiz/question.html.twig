@@ -8,6 +8,40 @@
 
 {% block body %}
 
+{% if quiz.time > 0 %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script language="JavaScript">
+window.setInterval(function() {
+  sec = $('#remainder_sec').html();
+  min = $('#remainder_min').html();
+  
+  if (sec == 0)
+  {
+    sec = 59;
+    min = min-1;
+  } else
+  {
+    sec = sec-1;
+  }
+  
+  $('#remainder_sec').text(sec);
+  $('#remainder_min').text(min);
+  
+  if ((min == 0) && (sec <= 0))
+  {
+    window.location.href = "{{ path('quiz_final', {'user_quiz_id': user_quiz.id }) }}";
+  }
+}, 1000);
+</script>
+
+<div id="remainder">
+  {{ 'quiz.question.timeleft'|trans }} 
+  <span id="remainder_min">{{ user_quiz.countTimeLeft['min'] }}</span> {{ 'quiz.question.min'|trans }}
+  <span id="remainder_sec">{{ user_quiz.countTimeLeft['sec'] }}</span> {{ 'quiz.question.sec'|trans }}
+</div>
+{% endif %}
+
 <h3>#{{number+1}}. {{ question.text }}</h3>
 
 <form method="post" action="{{ path('quiz_check') }}">      

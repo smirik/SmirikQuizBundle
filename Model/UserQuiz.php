@@ -98,5 +98,35 @@ class UserQuiz
     $this->setNumRightAnswers($num_right_answers);
     
   }
+  
+  /**
+   * Return number of second left to the quiz
+   * @param none
+   * @return integer|false
+   */
+  public function countTimeLeft()
+  {
+    if ($this->getQuiz()->getTime() == 0)
+    {
+      return false;
+    }
+    
+    $now = new \DateTime('now');
+    $now = $now->getTimeStamp();
+    $started_at = $this->getStartedAt()->getTimeStamp();
+    
+    $diff = $now - $started_at;
+    $left_sec = $this->getQuiz()->getTime() - $diff;
+    
+    if ($left_sec <= 0)
+    {
+      return array(0, 0);
+    } 
+    
+    $min = (int)($left_sec/60);
+    $sec = $left_sec%60;
+    
+    return array('min' => $min, 'sec' => $sec);
+  }
     
 }

@@ -25,7 +25,9 @@ class QuizManager
    */
   public function getAvaliableQuizes($user)
   {
-    return $this->repository->findAll();
+    return $this->repository->findBy(array(
+      'is_opened' => true,
+    ));
   }
   
   /**

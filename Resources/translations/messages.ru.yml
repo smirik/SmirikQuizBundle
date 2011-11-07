@@ -7,6 +7,8 @@ quiz.form.actions.delete: Удалить
 admin.quiz.form.actions:        Действия
 admin.quiz.form.created_at:     Создан
 
+quiz.home: На главную
+
 # Quiz translations
 
 admin.quiz.list.page_title:    Тесты
@@ -51,14 +53,15 @@ quiz.index.table.header.start:  Действие
 quiz.index.table.start_link:    Начать
 quiz.index.table.continue_link: Продолжить
 quiz.index.my_link:             Мои тесты
-# my quiz page
-quiz.my.page_title: Мои тесты
-quiz.my.title.comment: cписок
-quiz.my.active_tests: Активные тесты
+
+# my quiz page 
+quiz.my.page_title:      Мои тесты
+quiz.my.title.comment:   cписок
+quiz.my.active_tests:    Активные тесты
 quiz.my.avaliable_tests: Доступные тесты
 quiz.my.completed_tests: Пройденные тесты
 quiz.my.table.header.num_right_answers: Правильных ответов
-quiz.my.table.header.percent: %
+quiz.my.table.header.percent:    %
 quiz.my.table.header.started_at: Дата прохождения
 
 # start page
@@ -71,10 +74,20 @@ quiz.question.title.comment: прохождение
 quiz.question.submit:        Ответить
 quiz.question.previous:      Назад
 quiz.question.next:          Вперёд
+quiz.question.timeleft:      Осталось
+quiz.question.min:           мин.
+quiz.question.sec:           сек.
 
 # prefinal page
-quiz.prefinal.page_title: Завершение теста
+quiz.prefinal.page_title:    Завершение теста
 quiz.prefinal.title.comment: последний шаг
-quiz.prefinal.note:       "Вы ответили на все вопросы теста. Если Вы нажмёте кнопку Завершить, то тест закончится, и Вы не сможете изменить результат. Если Вы не уверены в каком-либо вопросе, нажмите кнопку Вернуться."
-quiz.prefinal.back:   Вернуться
-quiz.prefinal.finish: Закончить тест
+quiz.prefinal.note:          "Вы ответили на все вопросы теста. Если Вы нажмёте кнопку Завершить, то тест закончится, и Вы не сможете изменить результат. Если Вы не уверены в каком-либо вопросе, нажмите кнопку Вернуться."
+quiz.prefinal.back:          Вернуться
+quiz.prefinal.finish:        Закончить тест
+
+# final page
+quiz.final.title.comment:         Результаты
+quiz.final.total_questions:       Всего вопросов в тесте
+quiz.final.right_answers:         Правильно отвечено
+quiz.final.questions_with_errors: Вопросы, в которых были сделаны ошибки
+quiz.final.errors_note:           "Здесь указаны названия вопросов, в которых были сделаны ошибки. Если Вы не отвечали на какой-либо вопрос, он не указывается в списке."

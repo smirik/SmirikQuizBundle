@@ -30,19 +30,29 @@ class QuizController extends Controller
     $user = $this->container->get('security.context')->getToken()->getUser();
     $qm   = $this->get('quiz.manager');
     $uqm  = $this->get('user_quiz.manager');
-
-    $quizes = $qm->getAvaliableQuizes($user);
-    $users_quiz = array();
+    $em = $this->getDoctrine()->getEntityManager();
+    
+    $active_quiz = $uqm->getAllActiveQuizForUser($user, true, $em);
     /**
-     * @todo too much SQL queries
+     * Get quiz ids for active quizes
      */
-    foreach ($quizes as $quiz)
+    $active_quiz_ids = array();
+    if ($active_quiz)
     {
-      $users_quiz[$quiz->getId()] = $uqm->getActiveQuizForUser($user, $quiz);
+      foreach ($active_quiz as $quiz)
+      {
+        $active_quiz_ids[] = $quiz->getQuizId();
+      }
     }
+    
+    $avaliable_quiz = $qm->getAvaliableQuizes($user);
+    $completed_users_quiz = $uqm->getAllCompletedQuizForUser($user);
+    
     return array(
-      'quizes'     => $quizes,
-      'users_quiz' => $users_quiz,
+      'users_quiz'      => $active_quiz,
+      'active_quiz_ids' => $active_quiz_ids,
+      'avaliable_quiz'  => $avaliable_quiz,
+      'completed_users_quiz'  => $completed_users_quiz,
     );
   }
 
@@ -228,8 +238,8 @@ class QuizController extends Controller
     }
     
     /**
-     * Find answer for current question of create new UserQuestion
-     * and add answer
+     * Find answer for current question or create new UserQuestion
+     * and add/replace answer
      */
     $user_question = $uqum->findOrCreate($user_quiz, $question, $em);
     $user_question->addAnswer($answer, $em);
@@ -294,9 +304,12 @@ class QuizController extends Controller
       throw $this->createNotFoundException('UserQuiz not found');
     }
     
-    $user_quiz->close();
-    $em->persist($user_quiz);
-    $em->flush();
+    if (!$user_quiz->getIsClosed())
+    {
+      $user_quiz->close();
+      $em->persist($user_quiz);
+      $em->flush();
+    }
     
     return array(
       'user_quiz' => $user_quiz,
