@@ -31,6 +31,16 @@ class QuizManager
   }
   
   /**
+   * Find all quizes
+   * @param none
+   * @return array
+   */
+  public function findAll()
+  {
+    return $this->repository->findAll();
+  }
+  
+  /**
    * Get quiz by id
    * @param integer $id
    * @return Smirik\QuizBundle\Entity\Quiz

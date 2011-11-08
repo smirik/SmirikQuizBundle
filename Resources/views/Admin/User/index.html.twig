@@ -1,0 +1,50 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ 'admin.quiz.list.page_title'|trans }}{% endblock %}
+
+{% block header %}
+<h1>{{ 'admin.users.index.page_title'|trans }} <small>{{ 'admin.users.index.title.comment'|trans }}</small></h1>
+{% endblock %}
+
+{% block body %}
+
+{{ 'admin.users.index.choose_group'|trans }}
+<form action="{{ path('admin_users_index') }}" method="GET">
+<select name="group_id" onchange="">
+{% for group in groups %}
+    <option value="{{ group.id }}">{{ group.name }}</option>
+{% endfor %}
+</select>
+</form>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>{{ 'admin.users.list.check'|trans }}</th>
+            <th>{{ 'admin.users.list.id'|trans }}</th>
+            <th>{{ 'admin.users.list.name'|trans }}</th>
+            <th>{{ 'admin.users.list.actions'|trans }}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+        <tr>
+            <td><input type="checkbox" class="users_checkbox" name="users[]" value="{{ user.id }}"></td>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.id }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{{ 'admin.users.index.connect_with'|trans }}
+<select name="quiz_id">
+{% for quiz in quizes %}
+    <option value="{{ quiz.id }}">{{ quiz.title }}</option>
+{% endfor %}
+</select>
+
+<button class="primary btn">{{ 'admin.users.index.submit'|trans }}</button>
+
+{% endblock %}
