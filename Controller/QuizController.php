@@ -112,6 +112,13 @@ class QuizController extends Controller
     $questions = $qum->getRandomQuestionsForQuiz($quiz, $quiz->getNumQuestions());
 
     /**
+     * Redirect to home if quiz is not opened
+     */
+    if (!$quiz->getIsOpened()) 
+    {
+      return $this->redirect($this->generateUrl('quiz_index'));
+    }
+    /**
      * Creating UserQuiz
      */
     $user_quiz = $uqm->getActiveQuizForUser($user, $quiz);
