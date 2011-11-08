@@ -50,9 +50,12 @@ quiz.index.page_title:          Список тестов
 quiz.index.title.comment:       доступных для прохождения
 quiz.index.table.header.quiz:   Тест
 quiz.index.table.header.start:  Действие
+quiz.index.table.header.status: Статус
 quiz.index.table.start_link:    Начать
 quiz.index.table.continue_link: Продолжить
 quiz.index.my_link:             Мои тесты
+quiz.quiz.active:               активен
+quiz.quiz.success:              доступен
 
 # my quiz page 
 quiz.my.page_title:      Мои тесты
@@ -91,3 +94,14 @@ quiz.final.total_questions:       Всего вопросов в тесте
 quiz.final.right_answers:         Правильно отвечено
 quiz.final.questions_with_errors: Вопросы, в которых были сделаны ошибки
 quiz.final.errors_note:           "Здесь указаны названия вопросов, в которых были сделаны ошибки. Если Вы не отвечали на какой-либо вопрос, он не указывается в списке."
+
+# admin users page
+admin.users.index.page_title:    Тестирование пользователей
+admin.users.index.title.comment: закрытые тесты
+admin.users.index.choose_group:  Выбрать группу
+admin.users.list.check:          "#"
+admin.users.list.id:             Id
+admin.users.list.name:           Логин
+admin.users.list.actions:        Действия
+admin.users.index.connect_with:  Добавить в тест
+admin.users.index.submit:        Далее

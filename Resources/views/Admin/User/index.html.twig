@@ -8,6 +8,13 @@
 
 {% block body %}
 
+{% if app.session.hasFlash('message') %}
+  <div class="alert-message warning">
+    <a class="close" href="#">×</a>
+    <p>{{ app.session.flash('message')|trans }}</p>
+  </div>
+{% endif %}
+
 {{ 'admin.users.index.choose_group'|trans }}
 <form action="{{ path('admin_users_index') }}" method="GET">
 <select name="group_id" onchange="">
@@ -17,6 +24,7 @@
 </select>
 </form>
 
+<form action="{{ path('admin_users_connect') }}" method="post">
 <table class="records_list">
     <thead>
         <tr>
@@ -44,7 +52,6 @@
     <option value="{{ quiz.id }}">{{ quiz.title }}</option>
 {% endfor %}
 </select>
-
-<button class="primary btn">{{ 'admin.users.index.submit'|trans }}</button>
+<input type="submit" class="btn primary" value="{{ 'admin.users.index.submit'|trans }}">
 
 {% endblock %}

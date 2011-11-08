@@ -89,7 +89,7 @@ class UserQuizManager
     foreach ($active_quiz as $key => $u_quiz)
     {
       $diff = $now->getTimeStamp() - $u_quiz->getStartedAt()->getTimeStamp();
-      if ($diff > $u_quiz->getQuiz()->getTime())
+      if (($diff > $u_quiz->getQuiz()->getTime()) && ($u_quiz->getQuiz()->getTime() > 0))
       {
         /**
          * If there is an option "close old quiz"

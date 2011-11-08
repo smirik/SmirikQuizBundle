@@ -30,7 +30,7 @@ class UserQuestion extends ModelUserQuestion
     private $user_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Smirik\UserBundle\Entity\User", inversedBy="fos_user", cascade={"all"})
+     * @ORM\ManyToOne(targetEntity="Smirik\QuizBundle\Entity\User", inversedBy="fos_user", cascade={"all"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
@@ -215,9 +215,9 @@ class UserQuestion extends ModelUserQuestion
     /**
      * Set user
      *
-     * @param Smirik\UserBundle\Entity\User $user
+     * @param Smirik\QuizBundle\Entity\User $user
      */
-    public function setUser(\Smirik\UserBundle\Entity\User $user)
+    public function setUser(\Smirik\QuizBundle\Entity\User $user)
     {
         $this->user = $user;
     }
@@ -225,7 +225,7 @@ class UserQuestion extends ModelUserQuestion
     /**
      * Get user
      *
-     * @return Smirik\UserBundle\Entity\User 
+     * @return Smirik\QuizBundle\Entity\User 
      */
     public function getUser()
     {

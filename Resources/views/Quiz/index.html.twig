@@ -8,15 +8,17 @@
 
 {% block body %}
 
-{% if users_quiz %}
 <h2>{{ 'quiz.my.active_tests'|trans }}</h2>
+
 <table>
   <tr>
+    <th width="70">{{ 'quiz.index.table.header.status'|trans }}</th>
     <th>{{ 'quiz.index.table.header.quiz'|trans }}</th>
     <th>{{ 'quiz.index.table.header.start'|trans }}</th>
   </tr>
   {% for quiz in users_quiz %}
     <tr>
+      <td><span class="label warning">{{ 'quiz.quiz.active'|trans }}</span></td>
       <td>{{ quiz.quiz.title }}</td>
       <td width="100">
         <a href="{{ path('quiz_go', {'uq_id': quiz.id, 'number': quiz.current }) }}" class="btn">{{ 'quiz.index.table.continue_link'|trans }}</a>
@@ -24,21 +26,10 @@
     </tr>
   {% endfor %}
   
-</table>
-{% endif %}
-
-<h2>{{ 'quiz.my.avaliable_tests'|trans }}</h2>
-
-{% if avaliable_quiz %}
-<table class="zebra-striped">
-  <tr>
-    <th>{{ 'quiz.index.table.header.quiz'|trans }}</th>
-    <th>{{ 'quiz.index.table.header.start'|trans }}</th>
-  </tr>
-  
   {% for quiz in avaliable_quiz %}
     {% if (quiz.id not in active_quiz_ids) %}
     <tr>
+      <td><span class="label success">{{ 'quiz.quiz.success'|trans }}</span></td>
       <td>{{ quiz.title }}</td>
       <td width="100">
         <a href="{{ path('quiz_start', { 'quiz_id': quiz.id }) }}" class="btn">{{ 'quiz.index.table.start_link'|trans }}</a>
@@ -47,7 +38,6 @@
     {% endif %}
   {% endfor %}
 </table>
-{% endif %}
 
 {% if completed_users_quiz %}
 <h2>{{ 'quiz.my.completed_tests'|trans }}</h2>
