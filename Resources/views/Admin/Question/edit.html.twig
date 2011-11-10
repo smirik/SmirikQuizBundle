@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends 'SmirikQuizBundle::layout.html.twig' %}
 
 {% block title %}{{ 'admin.questions.edit.page_title'|trans }}{% endblock %}
 
@@ -8,19 +8,72 @@
 
 {% block body %}
 
-<form class="form-stacked basic" action="{{ path('smirik_quiz_admin_questions_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
-  {{ form_row(edit_form) }}
+<form class="form-stacked question_form" action="{{ path('smirik_quiz_admin_questions_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+  {{ form_row(edit_form.quiz) }}
+  {{ form_row(edit_form.text) }}
+  {{ form_row(edit_form.type) }}
+  {{ form_row(edit_form.file) }}
+  {{ form_row(edit_form.num_answers) }}
+
+  <table id="answers_collection" class="answers">
+    {% for answer in edit_form.answers %}
+      <tr>
+      <td>
+        {{ loop.index }}
+      </td>
+      <td>
+        {{ form_label(answer.title) }}
+        {{ form_errors(answer.title) }}
+        {{ form_widget(answer.title, { 'attr': {'class': 'span6'}}) }}
+      </td>
+      <td>{{ form_row(answer.file) }}</td>
+      <td>
+        {{ form_label(answer.is_right) }}
+        {{ form_errors(answer.is_right) }}
+        {{ form_widget(answer.is_right, { 'attr': {'class': 'span1'}}) }}
+        {{ form_rest(answer) }}
+      </td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  {{ form_rest(edit_form) }}
+  
   <div class="actions">
     <input type="submit" class="btn primary large" value="{{ 'quiz.form.actions.edit'|trans }}">
   </div>
     
-    <a href="javascript:void(0);" onclick="javascript:$('#submit_button').append($('#choumei_looksbundle_lookstype_accessories').attr('data-prototype'));">Add</a>
+    
+    <div id="data-prototype" data-prototype="{{ form_widget(edit_form.answers.get('prototype')) | e }}"></div>
+    
+    <a href="#" id="add-another-answer">Add another answer</a>
+
+    <script type="text/javascript">
+        // keep track of how many email fields ahve been rendered
+        var answersCount = '{{ edit_form.answers | length }}';
+
+        jQuery(document).ready(function() {
+            jQuery('#add-another-answer').click(function() {
+                var answersList = jQuery('#data-prototype');
+                var newWidget = answersList.attr('data-prototype');
+                newWidget = newWidget.replace(/\$\$name\$\$/g, answersCount);
+                newWidget = newWidget.replace(/<div>/g, '<td>');
+                newWidget = newWidget.replace(/<\/div>/g, '<\/td>');
+                answersCount++;
+                newWidget = newWidget.replace(/<div id=\"smirik_quizbundle_questiontype_answers/g, '<td>'+answersCount.toString()+'</td><div id=\"smirik_quizbundle_questiontype_answers');
+                var newLi = jQuery('<tr></tr>').html(newWidget);
+                newLi.appendTo(jQuery('#answers_collection'));
+                return false;
+            });
+        })
+    </script>    
+
 </form>
 
 <form action="{{ path('smirik_quiz_admin_questions_delete', { 'id': entity.id }) }}" method="post">
 {{ form_widget(delete_form) }}
 <div class="well">
-  <a href="{{ path('smirik_quiz_admin_questions') }}" class="btn">
+  <a href="{{ path('smirik_quiz_admin_questions', { 'quiz_id': entity.quiz.id}) }}" class="btn">
     {{ 'quiz.form.actions.back'|trans }}
   </a>
   <input type="submit" class="btn danger" value="{{ 'quiz.form.actions.delete'|trans }}">

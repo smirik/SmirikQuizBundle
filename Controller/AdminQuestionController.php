@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Smirik\QuizBundle\Entity\Question;
+use Smirik\QuizBundle\Entity\Answer;
 use Smirik\QuizBundle\Form\QuestionType;
 
 /**
@@ -44,6 +45,7 @@ class AdminQuestionController extends Controller
       return array(
         'entities' => $entities,
         'quizes'   => $quizes,
+        'quiz_id'  => $quiz_id,
       );
     }
 
@@ -78,13 +80,20 @@ class AdminQuestionController extends Controller
      */
     public function newAction()
     {
-        $entity = new Question();
-        $form   = $this->createForm(new QuestionType(), $entity);
+      $quiz_id = $this->getRequest()->query->get('quiz_id', false); 
+      
+      $entity = new Question();
+      if ($quiz_id)
+      {
+        $entity->setQuizId($quiz_id);
+      }
+      $form   = $this->createForm(new QuestionType(), $entity);
 
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView()
-        );
+      return array(
+        'entity'  => $entity,
+        'form'    => $form->createView(),
+        'quiz_id' => $quiz_id,
+      );
     }
 
     /**
@@ -105,8 +114,22 @@ class AdminQuestionController extends Controller
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($entity);
             $em->flush();
-
-            return $this->redirect($this->generateUrl('smirik_quiz_admin_questions_show', array('id' => $entity->getId())));
+            
+            /**
+             * Create N answers
+             */
+            $num_answers = $entity->getNumAnswers();
+            for ($i=0; $i<$num_answers; $i++)
+            {
+              $answer = new Answer();
+              $answer->setQuestion($entity);
+              $entity->addAnswer($answer);
+            }
+            
+            $em->persist($entity);
+            $em->flush();
+            
+            return $this->redirect($this->generateUrl('smirik_quiz_admin_questions_edit', array('id' => $entity->getId())));
             
         }
 
@@ -151,33 +174,31 @@ class AdminQuestionController extends Controller
      */
     public function updateAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+      $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('SmirikQuizBundle:Question')->find($id);
+      $entity = $em->getRepository('SmirikQuizBundle:Question')->find($id);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Question entity.');
-        }
+      if (!$entity) {
+        throw $this->createNotFoundException('Unable to find Question entity.');
+      }
 
-        $editForm   = $this->createForm(new QuestionType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
+      $editForm   = $this->createForm(new QuestionType(), $entity);
+      $deleteForm = $this->createDeleteForm($id);
+      $request = $this->getRequest();
 
-        $request = $this->getRequest();
+      $editForm->bindRequest($request);
+      if ($editForm->isValid()) {
+        $em->persist($entity);
+        $em->flush();
 
-        $editForm->bindRequest($request);
+        return $this->redirect($this->generateUrl('smirik_quiz_admin_questions', array('quiz_id' => $entity->getQuiz()->getId())));
+      }
 
-        if ($editForm->isValid()) {
-            $em->persist($entity);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('smirik_quiz_admin_questions_edit', array('id' => $id)));
-        }
-
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        );
+      return array(
+        'entity'      => $entity,
+        'edit_form'   => $editForm->createView(),
+        'delete_form' => $deleteForm->createView(),
+      );
     }
 
     /**
@@ -196,7 +217,9 @@ class AdminQuestionController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
             $entity = $em->getRepository('SmirikQuizBundle:Question')->find($id);
-
+            
+            $quiz_id = $entity->getQuiz()->getId();
+            
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Question entity.');
             }
@@ -205,7 +228,7 @@ class AdminQuestionController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('smirik_quiz_admin_questions'));
+        return $this->redirect($this->generateUrl('smirik_quiz_admin_questions', array('quiz_id' =>$quiz_id)));
     }
 
     private function createDeleteForm($id)

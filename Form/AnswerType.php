@@ -11,6 +11,7 @@ class AnswerType extends AbstractType
   public function buildForm(FormBuilder $builder, array $options)
   {
     $builder
+      ->add('question_id', 'hidden')
       ->add('title')
       ->add('file')
       ->add('is_right')

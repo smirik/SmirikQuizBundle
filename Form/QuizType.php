@@ -15,6 +15,7 @@ class QuizType extends AbstractType
             ->add('time')
             ->add('num_questions')
             ->add('is_active')
+            ->add('is_opened')
         ;
     }
 

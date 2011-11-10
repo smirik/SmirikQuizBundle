@@ -27,12 +27,41 @@
             <td>{{ entity.title }}</td>
             <td>{{ entity.description }}</td>
             <td>{{ entity.numquestions }}</td>
-            <td>{{ entity.isactive }}</td>
+            <td>
+              <ul class="unstyled">
+                <li>
+                  {% if entity.isactive %}
+                    {{ 'quiz.status.active'|trans }}
+                  {% else %}
+                    {{ 'quiz.status.disabled'|trans }}
+                  {% endif %}
+                </li>
+                <li>
+                  {% if entity.isopened %}
+                    {{ 'quiz.status.opened'|trans }}
+                  {% else %}
+                    {{ 'quiz.status.closed'|trans }}
+                  {% endif %}
+                </li>
+                <li>
+                  {% if entity.time > 0 %}
+                    {{ 'quiz.status.timeable'|trans }}
+                  {% else %}
+                    {{ 'quiz.status.without_time'|trans }}
+                  {% endif %}
+                </li>
+              
+            </td>
             <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif%}</td>
             <td>
-                <ul>
+                <ul class="unstyled">
                     <li>
                         <a href="{{ path('smirik_quiz_admin_quiz_edit', { 'id': entity.id }) }}">{{ 'admin.quiz.action.edit'|trans }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('smirik_quiz_admin_questions', { 'quiz_id': entity.id }) }}">
+                          {{ 'admin.quiz.action.questions'|trans }}
+                        </a>
                     </li>
                 </ul>
             </td>

@@ -29,7 +29,7 @@ class Answer
     private $question_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Question", inversedBy="smirik_questions", cascade={"all"})
+     * @ORM\ManyToOne(targetEntity="Question", inversedBy="smirik_questions")
      * @ORM\JoinColumn(name="question_id", referencedColumnName="id")
      */
     private $question;

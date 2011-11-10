@@ -1,0 +1,9 @@
+form.basic textarea { width: 500px; height: 100px; }
+
+div#remainder { font-size: 2.0em; float: right; margin: 0 100px 0 0;}
+
+table.answers { margin: 20px 0px; }
+table.answers tr td { vertical-align: middle; }
+
+form.question_form label { padding: 10px 0 2px 0; }
+form.question_form table.answers tr td label { padding: 0; }

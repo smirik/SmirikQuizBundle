@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends 'SmirikQuizBundle::layout.html.twig' %}
 
 {% block title %}{{ 'admin.questions.list.page_title'|trans }}{% endblock %}
 
@@ -8,24 +8,26 @@
 
 {% block body %}
 
-<form action="{{ path('smirik_quiz_admin_questions') }}" method="GET">
+<form id="quiz_choose_form" action="{{ path('smirik_quiz_admin_questions') }}" method="GET">
 <div class="quiz_choose">
-  <select name="quiz_id" onchange="this.submit();')">
+  {{ 'quiz.select'|trans }}: 
+  <select name="quiz_id" onchange="$('#quiz_choose_form').submit();">
+    <option value=""></option>
     {% for quiz in quizes %}
-      <option value="{{ quiz.id }}">{{ quiz.title }}</option>
+      <option value="{{ quiz.id }}" {% if quiz.id == quiz_id %}selected{% endif %}>{{ quiz.title }}</option>
     {% endfor %}
   </select>
 </div>
 </form>
 
-<table class="records_list">
+<table class="records_list zebra-striped">
   <thead>
     <tr>
       <th>{{ 'admin.questions.list.quiz'|trans }}</th>
       <th>{{ 'admin.questions.list.text'|trans }}</th>
       <th>{{ 'admin.questions.list.type'|trans }}</th>
-      <th>{{ 'quiz.form.created_at'|trans }}</th>
-      <th>{{ 'quiz.form.actions'|trans }}</th>
+      <th>{{ 'admin.quiz.form.created_at'|trans }}</th>
+      <th>{{ 'admin.quiz.form.actions'|trans }}</th>
     </tr>
   </thead>
   <tbody>
@@ -49,7 +51,7 @@
 
 <ul>
     <li>
-        <a href="{{ path('smirik_quiz_admin_questions_new') }}">
+        <a href="{{ path('smirik_quiz_admin_questions_new', { 'quiz_id': quiz_id }) }}">
             {{ 'quiz.form.actions.create'|trans }}
         </a>
     </li>

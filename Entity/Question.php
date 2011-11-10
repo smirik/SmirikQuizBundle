@@ -31,7 +31,7 @@ class Question extends ModelQuestion
     private $quiz_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Quiz", inversedBy="smirik_quiz", cascade={"all"})
+     * @ORM\ManyToOne(targetEntity="Quiz", inversedBy="smirik_quiz")
      * @ORM\JoinColumn(name="quiz_id", referencedColumnName="id")
      */
     private $quiz;
@@ -267,7 +267,7 @@ class Question extends ModelQuestion
      */
     public function addAnswer(\Smirik\QuizBundle\Entity\Answer $answers)
     {
-        $this->answers[] = $answers;
+      $this->answers[] = $answers;
     }
 
     /**

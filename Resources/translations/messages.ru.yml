@@ -8,6 +8,7 @@ admin.quiz.form.actions:        Действия
 admin.quiz.form.created_at:     Создан
 
 quiz.home: На главную
+quiz.select: Выбрать тест
 
 # Quiz translations
 
@@ -22,35 +23,57 @@ admin.quiz.list.created_at:    Добавлен
 admin.quiz.list.actions:       Действия
 admin.quiz.action.create:      Добавить
 admin.quiz.action.show:        Посмотреть
-admin.quiz.action.edit:        Редактировать
+admin.quiz.action.edit:        Изменить
+admin.quiz.action.questions:   Вопросы
 
+# Edit page
 admin.quiz.edit.page_title:    Тесты
-admin.quiz.edit.title.comment: редактировать
+admin.quiz.edit.title.comment: редактирование
+
+# Create page
+admin.quiz.create.page_title:    Тесты
+admin.quiz.create.title.comment: создание
+
+# Quiz statuses
+quiz.status.active:       активен
+quiz.status.disabled:     выключен
+quiz.status.opened:       открыт
+quiz.status.closed:       закрыт
+quiz.status.timeable:     временной
+quiz.status.without_time: неограниченный
 
 # Admin questions
-admin.questions.edit.page_title: Вопрос
+admin.questions.edit.page_title:    Вопрос
 admin.questions.edit.title.comment: редактирование 
+
+admin.questions.create.page_title:    Вопрос
+admin.questions.create.title.comment: создание
+
 quiz.form.Smirik quizbundle questiontype: " "
 
-# Admin Question form 
+# Admin Forms
+# Quiz Form
+quiz.form.Title:         Заголовок
+quiz.form.Description:   Описание
+quiz.form.Time:          Продолжительность
+quiz.form.Num questions: Количество вопросов
+quiz.form.Is active:     Включен?
+quiz.form.Is opened:     Публичный?
+
+# Question form
 quiz.form.Quiz: Тест
 quiz.form.Text: Текст вопроса
 quiz.form.Type: Тип вопроса
 quiz.form.File: Файл
 quiz.form.Num answers: Количество ответов
 
+# Answer form
 quiz.form.Answers: Форма ответов
 quiz.form.0: Ответ 1
 quiz.form.1: Ответ 2
 quiz.form.2: Ответ 3
 quiz.form.3: Ответ 4
 quiz.form.Is right: Правильный?
-
-quiz.form.Title:         Заголовок
-quiz.form.Description:   Описание
-quiz.form.Time:          Продолжительность
-quiz.form.Num questions: Количество вопросов
-quiz.form.Is active:     Включен?
 
 # Questions translations
 

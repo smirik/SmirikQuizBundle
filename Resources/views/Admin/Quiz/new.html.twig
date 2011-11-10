@@ -1,16 +1,24 @@
-<h1>Quiz creation</h1>
+{% extends '::base.html.twig' %}
 
-<form action="{{ path('smirik_quiz_admin_quiz_create') }}" method="post" {{ form_enctype(form) }}>
+{% block title %}{{ 'admin.quiz.create.page_title'|trans }}{% endblock %}
+
+{% block header %}
+<h1>{{ 'admin.quiz.create.page_title'|trans }} <small>{{ 'admin.quiz.create.title.comment'|trans }}</small></h1>
+{% endblock %}
+
+{% block body %}
+
+<form class="form-stacked basic" action="{{ path('smirik_quiz_admin_quiz_create') }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
-    <p>
-        <button type="submit">Create</button>
-    </p>
+    <div class="actions">
+      <input type="submit" class="btn primary large" value="{{ 'quiz.form.actions.create'|trans }}">
+    </div>
 </form>
 
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('admin_quiz') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+<div class="well">
+  <a href="{{ path('smirik_quiz_admin_quiz') }}" class="btn">
+    {{ 'quiz.form.actions.back'|trans }}
+  </a>
+</div>
+
+{% endblock %}

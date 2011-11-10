@@ -106,7 +106,7 @@ class AdminQuizController extends Controller
         $em->persist($entity);
         $em->flush();
 
-        return $this->redirect($this->generateUrl('smirik_quiz_admin_quiz_show', array('id' => $entity->getId())));
+        return $this->redirect($this->generateUrl('smirik_quiz_admin_quiz_edit', array('id' => $entity->getId())));
       
     }
 
