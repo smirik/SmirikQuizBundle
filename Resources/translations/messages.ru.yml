@@ -75,6 +75,9 @@ quiz.form.2: Ответ 3
 quiz.form.3: Ответ 4
 quiz.form.Is right: Правильный?
 
+# Users form
+users.quiz.connection.created: Тесты для указанных пользователей активированы.
+
 # Questions translations
 
 admin.questions.list.page_title:    Вопросы

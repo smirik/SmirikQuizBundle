@@ -88,6 +88,13 @@ class UserQuestion extends ModelUserQuestion
     private $answer;
 
     /**
+     * @var string $answer_text
+     *
+     * @ORM\Column(name="answer_text", type="string", length=200, nullable="true")
+     */
+    private $answer_text;
+
+    /**
      * @var boolean $is_right
      *
      * @ORM\Column(name="is_right", type="boolean", nullable="true")

@@ -99,7 +99,7 @@ class AdminUserController extends Controller
       }
     }
     
-    $this->get('session')->setFlash('message',"users.quiz.created");
+    $this->get('session')->setFlash('message',"users.quiz.connection.created");
     
     return $this->redirect($this->generateUrl('smirik_quiz_admin_users_index'));
   }

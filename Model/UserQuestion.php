@@ -5,7 +5,14 @@ namespace Smirik\QuizBundle\Model;
 class UserQuestion
 {
 
-  public function addAnswer($answer, $em)
+  /**
+   * Add user answer (with saving). With $answer_text — for questions with text answers
+   * @param Smirik\QuizBundle\Entity\Answer $answer
+   * @param $em
+   * @param string $answer_text
+   * @return void
+   */
+  public function addAnswer($answer, $em, $answer_text = false)
   {
     /**
      * Check is this answer for question we need
@@ -15,7 +22,20 @@ class UserQuestion
       throw new \Exception ('Question and Answer does not respond');
     }
     
-    $this->setIsRight($answer->getIsRight());
+    if ($answer_text)
+    {
+      if ($answer->getIsRight() == $answer_text)
+      {
+        $this->setIsRight(true);
+      } else
+      {
+        $this->setIsRight(false);
+      }
+    } else
+    {
+      $this->setIsRight($answer->getIsRight());
+    }
+    
     $this->setAnswer($answer);
     
     $em->persist($this);

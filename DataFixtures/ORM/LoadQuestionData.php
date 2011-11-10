@@ -12,8 +12,18 @@ class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterfac
   
   public function load($manager)
   {
+    $question = new Question();
+    $question->setQuiz($this->getReference('test_quiz'));
+    $question->setText('Test question №1');
+    $question->setType('text');
+    $question->setNumAnswers(1);
     
-    for ($i=1; $i<6; $i++)
+    $manager->persist($question);
+    $manager->flush();
+    
+    $this->addReference('question1', $question);
+    
+    for ($i=2; $i<6; $i++)
     {
       $question = new Question();
       $question->setQuiz($this->getReference('test_quiz'));

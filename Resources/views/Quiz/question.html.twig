@@ -49,11 +49,16 @@ window.setInterval(function() {
     <input type="hidden" name="question_id" value="{{ question.id }}">
     <input type="hidden" name="user_quiz_id" value="{{ user_quiz.id }}">
     <input type="hidden" name="number" value="{{ number }}">
-    <ul class="unstyled answers">
-      {% for answer in question.answers %}
+    {% if num_answers > 1 %}
+      <ul class="unstyled answers">
+      {% for answer in answers %}
         <li><input type="radio" name="answer_id" value="{{ answer.id }}" required {% if current_answer == answer.id %}checked{% endif %}><span class="answer_text">{{ answer.title }}</span></li>
       {% endfor %} 
-    </ul>
+      </ul>
+    {% else %}
+      <input type="hidden" name="answer_id" value="{{ answers[0].id }}">
+      <input type="input" class="span6" name="answer_text" value="">
+    {% endif %}
     <button class="btn large primary">{{ 'quiz.question.submit'|trans }}</button>
    </div>
 </form>

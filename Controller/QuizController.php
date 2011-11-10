@@ -183,6 +183,8 @@ class QuizController extends Controller
       $current_answer = false;
     }
     
+    $answers = $question->getAnswers();
+    
     return array(
       'user_quiz' => $user_quiz,
       'quiz'      => $user_quiz->getQuiz(),
@@ -190,6 +192,8 @@ class QuizController extends Controller
       'number'    => $number,
       'total'     => count($questions),
       'current_answer' => $current_answer,
+      'answers'   => $answers,
+      'num_answers' => count($answers),
     );
 
   }
@@ -204,6 +208,7 @@ class QuizController extends Controller
     $user_quiz_id = $this->getRequest()->request->get('user_quiz_id', false);
     $question_id  = $this->getRequest()->request->get('question_id', false);
     $answer_id    = $this->getRequest()->request->get('answer_id', false); 
+    $answer_text  = $this->getRequest()->request->get('answer_text', false); 
     $number       = $this->getRequest()->request->get('number', false); 
 
     if ((!$user_quiz_id) || (!$question_id) || (!$answer_id))
@@ -249,7 +254,7 @@ class QuizController extends Controller
      * and add/replace answer
      */
     $user_question = $uqum->findOrCreate($user_quiz, $question, $em);
-    $user_question->addAnswer($answer, $em);
+    $user_question->addAnswer($answer, $em, $answer_text);
     
     /**
      * Increment current position in quiz. If this question is the last one redirect to end page.

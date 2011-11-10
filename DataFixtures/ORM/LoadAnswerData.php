@@ -12,8 +12,17 @@ class LoadAnswerData extends AbstractFixture implements OrderedFixtureInterface
   
   public function load($manager)
   {
+    /**
+    * Question 1 has text answer
+    */
+    $answer = new Answer();
+    $answer->setQuestion($this->getReference('question1'));
+    $answer->setTitle('Test answer 1 №1');
+    $answer->setIsRight('235');
+    $manager->persist($answer);
+    $manager->flush();
     
-    for ($i=1; $i<6; $i++)
+    for ($i=2; $i<6; $i++)
     {
       for ($j=1; $j<5; $j++)
       {
