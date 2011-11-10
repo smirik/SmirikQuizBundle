@@ -27,6 +27,25 @@ admin.quiz.action.edit:        Редактировать
 admin.quiz.edit.page_title:    Тесты
 admin.quiz.edit.title.comment: редактировать
 
+# Admin questions
+admin.questions.edit.page_title: Вопрос
+admin.questions.edit.title.comment: редактирование 
+quiz.form.Smirik quizbundle questiontype: " "
+
+# Admin Question form 
+quiz.form.Quiz: Тест
+quiz.form.Text: Текст вопроса
+quiz.form.Type: Тип вопроса
+quiz.form.File: Файл
+quiz.form.Num answers: Количество ответов
+
+quiz.form.Answers: Форма ответов
+quiz.form.0: Ответ 1
+quiz.form.1: Ответ 2
+quiz.form.2: Ответ 3
+quiz.form.3: Ответ 4
+quiz.form.Is right: Правильный?
+
 quiz.form.Title:         Заголовок
 quiz.form.Description:   Описание
 quiz.form.Time:          Продолжительность
@@ -105,3 +124,5 @@ admin.users.list.name:           Логин
 admin.users.list.actions:        Действия
 admin.users.index.connect_with:  Добавить в тест
 admin.users.index.submit:        Далее
+
+
