@@ -3,16 +3,30 @@
 {% block title %}{{ 'quiz.final.page_title'|trans }}{% endblock %}
 
 {% block header %}
-<h1>{{ user_quiz.quiz.title }} <small>{{ 'quiz.final.title.comment'|trans }}</small></h1>
+<h1>{{ 'quiz.final.page_title'|trans }} <small>{{ user_quiz.quiz.title }}</small></h1>
 {% endblock %}
 
 {% block body %}
 
 <div class="final_results">
-  <ul>
-    <li>{{ 'quiz.final.total_questions'|trans }}: {{ user_quiz.quiz.numquestions }}</li>
-    <li>{{ 'quiz.final.right_answers'|trans }}: {{ user_quiz.numrightanswers }}</li>
-  </ul>
+  <table>
+    <tr>
+      <th>Параметр</th>
+      <th>Значение</th>
+    </tr>
+    <tr>
+      <td>{{ 'quiz.final.total_questions'|trans }}</td>
+      <td>{{ user_quiz.quiz.numquestions }}</td>
+    </tr>
+    <tr>
+      <td>{{ 'quiz.final.right_answers'|trans }}</td>
+      <td>{{ user_quiz.numrightanswers }}</td>
+    </tr>
+    <tr>
+      <td>{{ 'quiz.final.percent'|trans }}</td>
+      <td>{{ user_quiz.numrightanswers * 100 // user_quiz.quiz.numquestions}}%</td>
+    </tr>
+  </table>
   
   <h3>{{ 'quiz.final.questions_with_errors'|trans }}</h3>
   <p>
@@ -21,7 +35,7 @@
   <ul>
     {% for user_question in user_quiz.usersquestions %}
       {% if user_question.isright == 0 %}
-        <li>{{ user_question.question.text }}</li>
+        <li class="black">{{ user_question.question.text }}</li>
       {% endif %}
     {% endfor %}
   </ul>

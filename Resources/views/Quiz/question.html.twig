@@ -44,14 +44,16 @@ window.setInterval(function() {
 
 <h3>#{{number+1}}. {{ question.text }}</h3>
 
-<form method="post" action="{{ path('smirik_quiz_check') }}">      
+<form action="{{ path('smirik_quiz_check') }}" method="POST">
   <div class="question">
     <input type="hidden" name="question_id" value="{{ question.id }}">
     <input type="hidden" name="user_quiz_id" value="{{ user_quiz.id }}">
     <input type="hidden" name="number" value="{{ number }}">
-    {% for answer in question.answers %}
-    <input type="radio" name="answer_id" value="{{ answer.id }}" required {% if current_answer == answer.id %}checked{% endif %}> {{ answer.title }}<br />
-    {% endfor %} 
+    <ul class="unstyled answers">
+      {% for answer in question.answers %}
+        <li><input type="radio" name="answer_id" value="{{ answer.id }}" required {% if current_answer == answer.id %}checked{% endif %}><span class="answer_text">{{ answer.title }}</span></li>
+      {% endfor %} 
+    </ul>
     <button class="btn large primary">{{ 'quiz.question.submit'|trans }}</button>
    </div>
 </form>

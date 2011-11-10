@@ -131,9 +131,11 @@ quiz.prefinal.back:          Вернуться
 quiz.prefinal.finish:        Закончить тест
 
 # final page
+quiz.final.page_title:            Результаты
 quiz.final.title.comment:         Результаты
 quiz.final.total_questions:       Всего вопросов в тесте
 quiz.final.right_answers:         Правильно отвечено
+quiz.final.percent:               Процент правильно отвеченных
 quiz.final.questions_with_errors: Вопросы, в которых были сделаны ошибки
 quiz.final.errors_note:           "Здесь указаны названия вопросов, в которых были сделаны ошибки. Если Вы не отвечали на какой-либо вопрос, он не указывается в списке."
 
