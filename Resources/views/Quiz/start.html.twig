@@ -14,6 +14,6 @@
   {{ quiz.description }}
 </div>
 
-<a href="{{ path('quiz_go', {'uq_id': user_quiz.id, 'number': 0 }) }}" class="btn large">{{ 'quiz.start.start_link'|trans }}</a>
+<a href="{{ path('smirik_quiz_go', {'uq_id': user_quiz.id, 'number': 0 }) }}" class="btn large">{{ 'quiz.start.start_link'|trans }}</a>
 
 {% endblock %}

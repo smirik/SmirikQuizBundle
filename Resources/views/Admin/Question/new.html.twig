@@ -1,6 +1,6 @@
 <h1>Question creation</h1>
 
-<form action="{{ path('admin_questions_create') }}" method="post" {{ form_enctype(form) }}>
+<form action="{{ path('smirik_quiz_admin_questions_create') }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     <p>
         <button type="submit">Create</button>
@@ -9,7 +9,7 @@
 
 <ul class="record_actions">
     <li>
-        <a href="{{ path('admin_questions') }}">
+        <a href="{{ path('smirik_quiz_admin_questions') }}">
             Back to the list
         </a>
     </li>

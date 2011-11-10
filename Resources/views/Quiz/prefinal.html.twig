@@ -10,8 +10,8 @@
 
 <div class="prefinal_note">{{ 'quiz.prefinal.note'|trans }}</div>
 
-<a href="{{ path('quiz_go', {'uq_id': user_quiz.id, 'number': user_quiz.quiz.numquestions-1 }) }}" class="btn">{{ 'quiz.prefinal.back'|trans }}</a>
-<a href="{{ path('quiz_final', {'user_quiz_id': user_quiz.id }) }}" class="btn primary">{{ 'quiz.prefinal.finish'|trans }}</a>
+<a href="{{ path('smirik_quiz_go', {'uq_id': user_quiz.id, 'number': user_quiz.quiz.numquestions-1 }) }}" class="btn">{{ 'quiz.prefinal.back'|trans }}</a>
+<a href="{{ path('smirik_quiz_final', {'user_quiz_id': user_quiz.id }) }}" class="btn primary">{{ 'quiz.prefinal.finish'|trans }}</a>
 
 
 {% endblock %}

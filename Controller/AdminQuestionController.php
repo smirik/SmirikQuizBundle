@@ -19,22 +19,38 @@ class AdminQuestionController extends Controller
     /**
      * Lists all Question entities.
      *
-     * @Route("/", name="admin_questions")
+     * @Route("/", name="smirik_quiz_admin_questions")
      * @Template("SmirikQuizBundle:Admin\Question:index.html.twig", vars={"get"})
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
-
+      $quiz_id = (int)$this->getRequest()->query->get('quiz_id', false); 
+      
+      $em = $this->getDoctrine()->getEntityManager();
+      
+      if ($quiz_id)
+      {
+        $entities = $em->getRepository('SmirikQuizBundle:Question')->findBy(array(
+          'quiz_id' => $quiz_id,
+        ));
+      } else
+      {
         $entities = $em->getRepository('SmirikQuizBundle:Question')->findAll();
+      }
+      
+      $quizes = $em->getRepository('SmirikQuizBundle:Quiz')->findAll();
+      
 
-        return array('entities' => $entities);
+      return array(
+        'entities' => $entities,
+        'quizes'   => $quizes,
+      );
     }
 
     /**
      * Finds and displays a Question entity.
      *
-     * @Route("/{id}/show", name="admin_questions_show")
+     * @Route("/{id}/show", name="smirik_quiz_admin_questions_show")
      * @Template("SmirikQuizBundle:Admin\Question:show.html.twig", vars={"get"})
      */
     public function showAction($id)
@@ -57,7 +73,7 @@ class AdminQuestionController extends Controller
     /**
      * Displays a form to create a new Question entity.
      *
-     * @Route("/new", name="admin_questions_new")
+     * @Route("/new", name="smirik_quiz_admin_questions_new")
      * @Template("SmirikQuizBundle:Admin\Question:new.html.twig", vars={"get"})
      */
     public function newAction()
@@ -74,7 +90,7 @@ class AdminQuestionController extends Controller
     /**
      * Creates a new Question entity.
      *
-     * @Route("/create", name="admin_questions_create")
+     * @Route("/create", name="smirik_quiz_admin_questions_create")
      * @Method("post")
      * @Template("SmirikQuizBundle:Admin\Question:new.html.twig", vars={"post"})
      */
@@ -90,7 +106,7 @@ class AdminQuestionController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_questions_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('smirik_quiz_admin_questions_show', array('id' => $entity->getId())));
             
         }
 
@@ -103,7 +119,7 @@ class AdminQuestionController extends Controller
     /**
      * Displays a form to edit an existing Question entity.
      *
-     * @Route("/{id}/edit", name="admin_questions_edit")
+     * @Route("/{id}/edit", name="smirik_quiz_admin_questions_edit")
      * @Template("SmirikQuizBundle:Admin\Question:edit.html.twig", vars={"get"})
      */
     public function editAction($id)
@@ -129,7 +145,7 @@ class AdminQuestionController extends Controller
     /**
      * Edits an existing Question entity.
      *
-     * @Route("/{id}/update", name="admin_questions_update")
+     * @Route("/{id}/update", name="smirik_quiz_admin_questions_update")
      * @Method("post")
      * @Template("SmirikQuizBundle:Admin\Question:edit.html.twig", vars={"post"})
      */
@@ -154,7 +170,7 @@ class AdminQuestionController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_questions_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('smirik_quiz_admin_questions_edit', array('id' => $id)));
         }
 
         return array(
@@ -167,7 +183,7 @@ class AdminQuestionController extends Controller
     /**
      * Deletes a Question entity.
      *
-     * @Route("/{id}/delete", name="admin_questions_delete")
+     * @Route("/{id}/delete", name="smirik_quiz_admin_questions_delete")
      * @Method("post")
      */
     public function deleteAction($id)
@@ -189,7 +205,7 @@ class AdminQuestionController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('admin_questions'));
+        return $this->redirect($this->generateUrl('smirik_quiz_admin_questions'));
     }
 
     private function createDeleteForm($id)

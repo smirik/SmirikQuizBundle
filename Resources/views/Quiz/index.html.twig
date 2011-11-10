@@ -21,7 +21,7 @@
       <td><span class="label warning">{{ 'quiz.quiz.active'|trans }}</span></td>
       <td>{{ quiz.quiz.title }}</td>
       <td width="100">
-        <a href="{{ path('quiz_go', {'uq_id': quiz.id, 'number': quiz.current }) }}" class="btn">{{ 'quiz.index.table.continue_link'|trans }}</a>
+        <a href="{{ path('smirik_quiz_go', {'uq_id': quiz.id, 'number': quiz.current }) }}" class="btn">{{ 'quiz.index.table.continue_link'|trans }}</a>
       </td>
     </tr>
   {% endfor %}
@@ -32,7 +32,7 @@
       <td><span class="label success">{{ 'quiz.quiz.success'|trans }}</span></td>
       <td>{{ quiz.title }}</td>
       <td width="100">
-        <a href="{{ path('quiz_start', { 'quiz_id': quiz.id }) }}" class="btn">{{ 'quiz.index.table.start_link'|trans }}</a>
+        <a href="{{ path('smirik_quiz_start', { 'quiz_id': quiz.id }) }}" class="btn">{{ 'quiz.index.table.start_link'|trans }}</a>
       </td>
     </tr>
     {% endif %}
@@ -61,6 +61,6 @@
 {% endif %}
 
 
-<a href="{{ path('quiz_index') }}">{{ 'quiz.index.link'|trans }}</a>
+<a href="{{ path('smirik_quiz_index') }}">{{ 'quiz.index.link'|trans }}</a>
 
 {% endblock %}

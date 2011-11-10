@@ -22,7 +22,7 @@ class QuizController extends Controller
   /**
   * Show user avaliable quizes.
   *
-  * @Route("/", name="quiz_index")
+  * @Route("/", name="smirik_quiz_index")
   * @Template("SmirikQuizBundle:Quiz:index.html.twig")
   */
   public function indexAction()
@@ -58,7 +58,7 @@ class QuizController extends Controller
 
   /**
    * List of active quized
-   * @Route("/my", name="quiz_my")
+   * @Route("/my", name="smirik_quiz_my")
    * @Template("SmirikQuizBundle:Quiz:my.html.twig", vars={"get"})
    */
   public function myAction()
@@ -94,7 +94,7 @@ class QuizController extends Controller
 
   /**
    * Start new quiz for current user
-   * @Route("/start/{quiz_id}", name="quiz_start")
+   * @Route("/start/{quiz_id}", name="smirik_quiz_start")
    * @Template("SmirikQuizBundle:Quiz:start.html.twig", vars={"get"})
    */
   public function startAction($quiz_id)
@@ -116,7 +116,7 @@ class QuizController extends Controller
      */
     if (!$quiz->getIsOpened()) 
     {
-      return $this->redirect($this->generateUrl('quiz_index'));
+      return $this->redirect($this->generateUrl('smirik_quiz_index'));
     }
     /**
      * Creating UserQuiz
@@ -136,7 +136,7 @@ class QuizController extends Controller
 
   /**
    * Start new quiz for current user
-   * @Route("/question/quiz{uq_id}/step{number}", name="quiz_go")
+   * @Route("/question/quiz{uq_id}/step{number}", name="smirik_quiz_go")
    * @Template("SmirikQuizBundle:Quiz:question.html.twig", vars={"get"})
    */
   public function questionAction($uq_id, $number)
@@ -196,7 +196,7 @@ class QuizController extends Controller
 
   /**
    * Check user answer
-   * @Route("/question/check", name="quiz_check")
+   * @Route("/question/check", name="smirik_quiz_check")
    * @Method("post")
    */
   public function checkQuestionAction(Request $request)
@@ -256,20 +256,20 @@ class QuizController extends Controller
      */
     if (($number + 1) == $quiz->getNumQuestions())
     {
-      return $this->redirect($this->generateUrl('quiz_prefinal', array('user_quiz_id' => $user_quiz->getId())));
+      return $this->redirect($this->generateUrl('smirik_quiz_prefinal', array('user_quiz_id' => $user_quiz->getId())));
     }
     
     $user_quiz->setCurrent($number+1);
     $em->persist($user_quiz);
     $em->flush();
     
-    return $this->redirect($this->generateUrl('quiz_go', array('uq_id' => $user_quiz->getId(), 'number' => $user_quiz->getCurrent())));
+    return $this->redirect($this->generateUrl('smirik_quiz_go', array('uq_id' => $user_quiz->getId(), 'number' => $user_quiz->getCurrent())));
 
   }
 
   /**
    * Page before end
-   * @Route("/question/quiz{user_quiz_id}/prefinal", name="quiz_prefinal")
+   * @Route("/question/quiz{user_quiz_id}/prefinal", name="smirik_quiz_prefinal")
    * @Template("SmirikQuizBundle:Quiz:prefinal.html.twig", vars={"get"})
    */
   public function preFinalAction($user_quiz_id)
@@ -289,7 +289,7 @@ class QuizController extends Controller
   
   /**
    * Final page
-   * @Route("/question/quiz{user_quiz_id}/final", name="quiz_final")
+   * @Route("/question/quiz{user_quiz_id}/final", name="smirik_quiz_final")
    * @Template("SmirikQuizBundle:Quiz:final.html.twig", vars={"get"})
    */
   public function finalAction($user_quiz_id)

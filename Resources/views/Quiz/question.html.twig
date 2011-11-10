@@ -30,7 +30,7 @@ window.setInterval(function() {
   
   if ((min == 0) && (sec <= 0))
   {
-    window.location.href = "{{ path('quiz_final', {'user_quiz_id': user_quiz.id }) }}";
+    window.location.href = "{{ path('smirik_quiz_final', {'user_quiz_id': user_quiz.id }) }}";
   }
 }, 1000);
 </script>
@@ -44,7 +44,7 @@ window.setInterval(function() {
 
 <h3>#{{number+1}}. {{ question.text }}</h3>
 
-<form method="post" action="{{ path('quiz_check') }}">      
+<form method="post" action="{{ path('smirik_quiz_check') }}">      
   <div class="question">
     <input type="hidden" name="question_id" value="{{ question.id }}">
     <input type="hidden" name="user_quiz_id" value="{{ user_quiz.id }}">
@@ -57,10 +57,10 @@ window.setInterval(function() {
 </form>
 
 {% if number > 0 %}
-  <a href="{{ path('quiz_go', {'uq_id': user_quiz.id, 'number': number-1 }) }}" class="btn">{{ 'quiz.question.previous'|trans }}</a>
+  <a href="{{ path('smirik_quiz_go', {'uq_id': user_quiz.id, 'number': number-1 }) }}" class="btn">{{ 'quiz.question.previous'|trans }}</a>
 {% endif %}
 {% if (number+1) < total %}
-  <a href="{{ path('quiz_go', {'uq_id': user_quiz.id, 'number': number+1 }) }}" class="btn">{{ 'quiz.question.next'|trans }}</a>
+  <a href="{{ path('smirik_quiz_go', {'uq_id': user_quiz.id, 'number': number+1 }) }}" class="btn">{{ 'quiz.question.next'|trans }}</a>
 {% endif %}
 
 {% endblock %}

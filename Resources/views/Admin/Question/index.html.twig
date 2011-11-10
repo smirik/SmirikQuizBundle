@@ -8,6 +8,16 @@
 
 {% block body %}
 
+<form action="{{ path('smirik_quiz_admin_questions') }}" method="GET">
+<div class="quiz_choose">
+  <select name="quiz_id" onchange="this.submit();')">
+    {% for quiz in quizes %}
+      <option value="{{ quiz.id }}">{{ quiz.title }}</option>
+    {% endfor %}
+  </select>
+</div>
+</form>
+
 <table class="records_list">
   <thead>
     <tr>
@@ -28,7 +38,7 @@
     <td>
       <ul>
         <li>
-          <a href="{{ path('admin_questions_edit', { 'id': entity.id }) }}">{{ 'quiz.form.actions.edit'|trans }}</a>
+          <a href="{{ path('smirik_quiz_admin_questions_edit', { 'id': entity.id }) }}">{{ 'quiz.form.actions.edit'|trans }}</a>
         </li>
       </ul>
     </td>
@@ -39,7 +49,7 @@
 
 <ul>
     <li>
-        <a href="{{ path('admin_questions_new') }}">
+        <a href="{{ path('smirik_quiz_admin_questions_new') }}">
             {{ 'quiz.form.actions.create'|trans }}
         </a>
     </li>

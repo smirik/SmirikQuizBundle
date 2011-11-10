@@ -19,7 +19,7 @@ class AdminUserController extends Controller
   /**
   * Finds and displays a users.
   *
-  * @Route("/", name="admin_users_index")
+  * @Route("/", name="smirik_quiz_admin_users_index")
   * @Template("SmirikQuizBundle:Admin\User:index.html.twig")
   */
   public function indexAction()
@@ -56,7 +56,7 @@ class AdminUserController extends Controller
   /**
   * Connect users to quiz
   *
-  * @Route("/connect", name="admin_users_connect")
+  * @Route("/connect", name="smirik_quiz_admin_users_connect")
   * @Method("post")
   */
   public function connectAction()
@@ -72,13 +72,13 @@ class AdminUserController extends Controller
     
     if (!$users || !$quiz_id)
     {
-      return $this->redirect($this->generateUrl('admin_users_index'));
+      return $this->redirect($this->generateUrl('smirik_quiz_admin_users_index'));
     }
     
     $quiz = $qm->find($quiz_id);
     if (!$quiz)
     {
-      return $this->redirect($this->generateUrl('admin_users_index'));
+      return $this->redirect($this->generateUrl('smirik_quiz_admin_users_index'));
     }
     
     /**
@@ -101,7 +101,7 @@ class AdminUserController extends Controller
     
     $this->get('session')->setFlash('message',"users.quiz.created");
     
-    return $this->redirect($this->generateUrl('admin_users_index'));
+    return $this->redirect($this->generateUrl('smirik_quiz_admin_users_index'));
   }
   
 }

@@ -16,7 +16,7 @@
 {% endif %}
 
 {{ 'admin.users.index.choose_group'|trans }}
-<form action="{{ path('admin_users_index') }}" method="GET">
+<form action="{{ path('smirik_quiz_admin_users_index') }}" method="GET">
 <select name="group_id" onchange="">
 {% for group in groups %}
     <option value="{{ group.id }}">{{ group.name }}</option>
@@ -24,7 +24,7 @@
 </select>
 </form>
 
-<form action="{{ path('admin_users_connect') }}" method="post">
+<form action="{{ path('smirik_quiz_admin_users_connect') }}" method="post">
 <table class="records_list">
     <thead>
         <tr>

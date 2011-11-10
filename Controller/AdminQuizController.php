@@ -20,7 +20,7 @@ class AdminQuizController extends Controller
   /**
   * Finds and displays a Quiz entity.
   *
-  * @Route("/users", name="admin_quiz_users")
+  * @Route("/users", name="smirik_quiz_admin_quiz_users")
   * @Template("SmirikQuizBundle:Admin\Quiz:users.html.twig")
   */
   public function usersAction()
@@ -35,7 +35,7 @@ class AdminQuizController extends Controller
   /**
   * Lists all Quiz entities.
   *
-  * @Route("/", name="admin_quiz")
+  * @Route("/", name="smirik_quiz_admin_quiz")
   * @Template("SmirikQuizBundle:Admin\Quiz:index.html.twig", vars={"get"})
   */
   public function indexAction()
@@ -50,7 +50,7 @@ class AdminQuizController extends Controller
   /**
   * Finds and displays a Quiz entity.
   *
-  * @Route("/{id}/show", name="admin_quiz_show")
+  * @Route("/{id}/show", name="smirik_quiz_admin_quiz_show")
   * @Template("SmirikQuizBundle:Admin\Quiz:show.html.twig", vars={"get"})
   */
   public function showAction($id)
@@ -73,7 +73,7 @@ class AdminQuizController extends Controller
   /**
   * Displays a form to create a new Quiz entity.
   *
-  * @Route("/new", name="admin_quiz_new")
+  * @Route("/new", name="smirik_quiz_admin_quiz_new")
   * @Template("SmirikQuizBundle:Admin\Quiz:new.html.twig", vars={"get"})
   */
   public function newAction()
@@ -90,7 +90,7 @@ class AdminQuizController extends Controller
   /**
   * Creates a new Quiz entity.
   *
-  * @Route("/create", name="admin_quiz_create")
+  * @Route("/create", name="smirik_quiz_admin_quiz_create")
   * @Method("post")
   * @Template("SmirikQuizBundle:Admin\Quiz:new.html.twig", vars={"post"})
   */
@@ -106,7 +106,7 @@ class AdminQuizController extends Controller
         $em->persist($entity);
         $em->flush();
 
-        return $this->redirect($this->generateUrl('admin_quiz_show', array('id' => $entity->getId())));
+        return $this->redirect($this->generateUrl('smirik_quiz_admin_quiz_show', array('id' => $entity->getId())));
       
     }
 
@@ -119,7 +119,7 @@ class AdminQuizController extends Controller
   /**
   * Displays a form to edit an existing Quiz entity.
   *
-  * @Route("/{id}/edit", name="admin_quiz_edit")
+  * @Route("/{id}/edit", name="smirik_quiz_admin_quiz_edit")
   * @Template("SmirikQuizBundle:Admin\Quiz:edit.html.twig", vars={"get"})
   */
   public function editAction($id)
@@ -145,7 +145,7 @@ class AdminQuizController extends Controller
   /**
   * Edits an existing Quiz entity.
   *
-  * @Route("/{id}/update", name="admin_quiz_update")
+  * @Route("/{id}/update", name="smirik_quiz_admin_quiz_update")
   * @Method("post")
   * @Template("SmirikQuizBundle:Admin\Quiz:edit.html.twig")
   */
@@ -170,7 +170,7 @@ class AdminQuizController extends Controller
         $em->persist($entity);
         $em->flush();
 
-        return $this->redirect($this->generateUrl('admin_quiz_edit', array('id' => $id)));
+        return $this->redirect($this->generateUrl('smirik_quiz_admin_quiz_edit', array('id' => $id)));
     }
 
     return array(
@@ -183,7 +183,7 @@ class AdminQuizController extends Controller
   /**
   * Deletes a Quiz entity.
   *
-  * @Route("/{id}/delete", name="admin_quiz_delete")
+  * @Route("/{id}/delete", name="smirik_quiz_admin_quiz_delete")
   * @Method("post")
   */
   public function deleteAction($id)
@@ -205,7 +205,7 @@ class AdminQuizController extends Controller
         $em->flush();
     }
 
-    return $this->redirect($this->generateUrl('admin_quiz'));
+    return $this->redirect($this->generateUrl('smirik_quiz_admin_quiz'));
   }
 
   private function createDeleteForm($id)

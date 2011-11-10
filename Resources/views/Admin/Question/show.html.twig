@@ -39,17 +39,17 @@
 
 <ul class="record_actions">
     <li>
-        <a href="{{ path('admin_questions') }}">
+        <a href="{{ path('smirik_quiz_admin_questions') }}">
             Back to the list
         </a>
     </li>
     <li>
-        <a href="{{ path('admin_questions_edit', { 'id': entity.id }) }}">
+        <a href="{{ path('smirik_quiz_admin_questions_edit', { 'id': entity.id }) }}">
             Edit
         </a>
     </li>
     <li>
-        <form action="{{ path('admin_questions_delete', { 'id': entity.id }) }}" method="post">
+        <form action="{{ path('smirik_quiz_admin_questions_delete', { 'id': entity.id }) }}" method="post">
             {{ form_widget(delete_form) }}
             <button type="submit">Delete</button>
         </form>
