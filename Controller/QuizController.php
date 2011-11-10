@@ -161,12 +161,12 @@ class QuizController extends Controller
 
     $questions = json_decode($user_quiz->getQuestions());
     $number = (int)$number;
-    if (($number > count($questions)) || ($number < 0))
+    if (($number > count($questions)) || ($number < 0) || (empty($questions)))
     {
       /**
        * @todo Exception
        */
-      die('Error');
+      throw new \Exception('Bad quiz data');
     }
 
     $question = $qum->find($questions[$number]);
