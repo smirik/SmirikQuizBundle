@@ -46,10 +46,9 @@
     
     <div id="data-prototype" data-prototype="{{ form_widget(edit_form.answers.get('prototype')) | e }}"></div>
     
-    <a href="#" id="add-another-answer">Add another answer</a>
+    <a href="#" id="add-another-answer">{{ 'admin.questions.add_answer'|trans }}</a>
 
     <script type="text/javascript">
-        // keep track of how many email fields ahve been rendered
         var answersCount = '{{ edit_form.answers | length }}';
 
         jQuery(document).ready(function() {

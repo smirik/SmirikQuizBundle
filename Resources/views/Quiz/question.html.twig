@@ -42,7 +42,7 @@ window.setInterval(function() {
 </div>
 {% endif %}
 
-<h3>#{{number+1}}. {{ question.text }}</h3>
+<h3>#{{number+1}}. {{ question.text | raw }}</h3>
 
 <form action="{{ path('smirik_quiz_check') }}" method="POST">
   <div class="question">
@@ -52,7 +52,7 @@ window.setInterval(function() {
     {% if num_answers > 1 %}
       <ul class="unstyled answers">
       {% for answer in answers %}
-        <li><input type="radio" name="answer_id" value="{{ answer.id }}" required {% if current_answer == answer.id %}checked{% endif %}><span class="answer_text">{{ answer.title }}</span></li>
+        <li><input type="radio" name="answer_id" value="{{ answer.id }}" required {% if current_answer == answer.id %}checked{% endif %}><span class="answer_text">{{ answer.title | raw }}</span></li>
       {% endfor %} 
       </ul>
     {% else %}

@@ -35,7 +35,7 @@
   <ul>
     {% for user_question in user_quiz.usersquestions %}
       {% if user_question.isright == 0 %}
-        <li class="black">{{ user_question.question.text }}</li>
+        <li class="black">{{ user_question.question.text | raw }}</li>
       {% endif %}
     {% endfor %}
   </ul>
