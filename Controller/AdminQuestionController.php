@@ -112,6 +112,9 @@ class AdminQuestionController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
+            
+            $entity->upload();
+            
             $em->persist($entity);
             $em->flush();
             
@@ -188,6 +191,9 @@ class AdminQuestionController extends Controller
 
       $editForm->bindRequest($request);
       if ($editForm->isValid()) {
+        
+        $entity->upload();
+        
         $em->persist($entity);
         $em->flush();
 

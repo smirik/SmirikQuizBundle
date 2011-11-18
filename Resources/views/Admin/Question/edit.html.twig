@@ -12,7 +12,7 @@
   {{ form_row(edit_form.quiz) }}
   {{ form_row(edit_form.text) }}
   {{ form_row(edit_form.type) }}
-  {{ form_row(edit_form.file) }}
+  {{ form_row(edit_form.v_file) }}
   {{ form_row(edit_form.num_answers) }}
 
   <table id="answers_collection" class="answers">
@@ -26,7 +26,7 @@
         {{ form_errors(answer.title) }}
         {{ form_widget(answer.title, { 'attr': {'class': 'span6'}}) }}
       </td>
-      <td>{{ form_row(answer.file) }}</td>
+      <td>{{ form_row(answer.v_file) }}</td>
       <td>
         {{ form_label(answer.is_right) }}
         {{ form_errors(answer.is_right) }}

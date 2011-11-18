@@ -11,7 +11,7 @@ use Smirik\QuizBundle\Entity\UserQuiz;
 /**
  * User controller.
  *
- * @Route("/admin/users")
+ * @Route("/admin/quiz-users")
  */
 class AdminUserController extends Controller
 {

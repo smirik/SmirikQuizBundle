@@ -44,6 +44,10 @@ window.setInterval(function() {
 
 <h3>#{{number+1}}. {{ question.text | raw }}</h3>
 
+{% if question.file %}
+  <img src="{{ asset(question.webPath) }}" alt="{{ question.text }}">
+{% endif %}
+
 <form action="{{ path('smirik_quiz_check') }}" method="POST">
   <div class="question">
     <input type="hidden" name="question_id" value="{{ question.id }}">

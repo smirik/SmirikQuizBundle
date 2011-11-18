@@ -13,7 +13,7 @@ class AnswerType extends AbstractType
     $builder
       ->add('question_id', 'hidden')
       ->add('title')
-      ->add('file')
+      ->add('v_file')
       ->add('is_right')
     ;
   }

@@ -3,6 +3,7 @@
 namespace Smirik\QuizBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Smirik\QuizBundle\Model\Answer as ModelAnswer;
 
 /**
  * Smirik\QuizBundle\Entity\Answer
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="smirik_answers")
  * @ORM\Entity
  */
-class Answer
+class Answer extends ModelAnswer
 {
     /**
      * @var integer $id

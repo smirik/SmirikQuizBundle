@@ -14,7 +14,7 @@ class QuestionType extends AbstractType
       ->add('quiz')
       ->add('text')
       ->add('type')
-      ->add('file')
+      ->add('v_file')
       ->add('num_answers')
       ->add('answers', 'collection', array(
         'type'         => new AnswerType(),
