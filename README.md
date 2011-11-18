@@ -21,7 +21,7 @@ Requirements
 ------------
 
 * Symfony2 with twig.
-* Doctrine2, DoctrinExtension & DoctrinFixtures.
+* Doctrine2, DoctrineExtension & DoctrineFixtures.
 * [FOSUserBundle](https://github.com/FriendsOfSymfony/FOSUserBundle) (please see the installation steps [here](https://github.com/FriendsOfSymfony/FOSUserBundle/blob/master/Resources/doc/index.md)).
 * Annotations for Controllers.
 * [SonatajQueryBundle](https://github.com/sonata-project/SonatajQueryBundle) or SonataAdminBundle with all dependences.
