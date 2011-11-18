@@ -35,7 +35,8 @@ Installation
 * Copy files to src/Smirik/QuizBundle
 * Add the following code to config.yml:
 
-  ```fos_user:
+  ```
+  fos_user:
         db_driver: orm # other valid values are 'mongodb', 'couchdb'
         firewall_name: main
         user_class: Smirik\QuizBundle\Entity\User
@@ -48,14 +49,15 @@ Installation
         strict_variables: %kernel.debug%
         form:
           resources:
-            - 'SmirikQuizBundle:Form:fields.html.twig'```
+            - 'SmirikQuizBundle:Form:fields.html.twig'
+  ```
 
 * Add routes to routing.yml:
- ```routing.yml
-    SmirikQuizBundle:
-        resource: "@SmirikQuizBundle/Controller/"
-        type:     annotation
-        prefix:   /
+ ```
+  SmirikQuizBundle:
+      resource: "@SmirikQuizBundle/Controller/"
+      type:     annotation
+      prefix:   /
   ```
 * Update database and load fixtures
  ```php app/console doctrine:schema:update --force
