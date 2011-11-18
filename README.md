@@ -74,6 +74,18 @@ Database schema
 
 ![Database schema](http://4xxi.com/images/SmirikQuizBundle-DB.png)
 
+How to use
+----------
+
+* Bundle has its own layout Resources/views/layout.html.twig extending base.html.twig. All templates extending this layout.
+* There are 4 controllers:
+  * AdminQuestionController (/admin/questions/*) for questions management,
+  * AdminQuizController (/admin/quiz/*) for quizes management,
+  * AdminUserController (/admin/quiz-users/*) for assigning users to quizes,
+  * QuizController (/quiz/*) — frontend for users.
+* Access to all parts is granted just for authorized users.
+* Just ROLE_ADMIN users have access to /admin/* parts.
+* To start test quiz you should login (/login) and go to /quiz webpage.
 
 License
 -------
