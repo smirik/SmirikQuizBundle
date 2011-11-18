@@ -43,16 +43,17 @@ Installation
         group:
             group_class: Smirik\QuizBundle\Entity\Group
 
-    ...
-    twig:
-        debug:            %kernel.debug%
-        strict_variables: %kernel.debug%
-        form:
-          resources:
-            - 'SmirikQuizBundle:Form:fields.html.twig'
+  ...
+  twig:
+      debug:            %kernel.debug%
+      strict_variables: %kernel.debug%
+      form:
+        resources:
+          - 'SmirikQuizBundle:Form:fields.html.twig'
   ```
 
 * Add routes to routing.yml:
+
  ```
   SmirikQuizBundle:
       resource: "@SmirikQuizBundle/Controller/"
@@ -60,10 +61,19 @@ Installation
       prefix:   /
   ```
 * Update database and load fixtures
- ```php app/console doctrine:schema:update --force
-    php app/console doctrine:fixtures:load --append```
+
+  ```
+  php app/console doctrine:schema:update --force
+  php app/console doctrine:fixtures:load --append
+  ```
     
 * Enjoy!
+
+Database schema
+---------------
+
+![Database schema](http://4xxi.com/images/SmirikQuizBundle-DB.png)
+
 
 License
 -------

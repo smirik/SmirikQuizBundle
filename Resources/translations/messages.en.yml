@@ -1,3 +1,156 @@
-quiz.list.title: Quiz list
-quiz.list.id: Id
-quiz.list.title: Title
+# Base translations
+quiz.form.actions.create: Create
+quiz.form.actions.edit:   Edit
+quiz.form.actions.back:   Back
+quiz.form.actions.delete: Delete
+
+admin.quiz.form.actions:        Actions
+admin.quiz.form.created_at:     Created
+
+quiz.home: Home
+quiz.select: Choose quiz
+
+# Quiz translations
+
+admin.quiz.list.page_title:    Quizes
+admin.quiz.list.title.comment: list
+admin.quiz.list.id:            Id
+admin.quiz.list.title:         Title
+admin.quiz.list.description:   Description
+admin.quiz.list.num_questions: Number of questions
+admin.quiz.list.is_active:     Is active?
+admin.quiz.list.created_at:    Created
+admin.quiz.list.actions:       Actions
+admin.quiz.action.create:      Create
+admin.quiz.action.show:        Show
+admin.quiz.action.edit:        Edit
+admin.quiz.action.questions:   Questions
+
+# Edit page
+admin.quiz.edit.page_title:    Quizes
+admin.quiz.edit.title.comment: edit
+
+# Create page
+admin.quiz.create.page_title:    Quizes
+admin.quiz.create.title.comment: creating
+
+# Quiz statuses
+quiz.status.active:       active
+quiz.status.disabled:     disabled
+quiz.status.opened:       opened
+quiz.status.closed:       closed
+quiz.status.timeable:     timeable
+quiz.status.without_time: unlimited time
+
+# Admin questions
+admin.questions.edit.page_title:    Question
+admin.questions.edit.title.comment: edit 
+
+admin.questions.create.page_title:    Question
+admin.questions.create.title.comment: create
+
+quiz.form.Smirik quizbundle questiontype: " "
+
+# Admin Forms
+# Quiz Form
+quiz.form.Title:         Title
+quiz.form.Description:   Description
+quiz.form.Time:          Time
+quiz.form.Num questions: Number of questions
+quiz.form.Is active:     Is active?
+quiz.form.Is opened:     Is public?
+
+# Question form
+quiz.form.Quiz: Quiz
+quiz.form.Text: Question text
+quiz.form.Type: Question type
+quiz.form.File: File
+quiz.form.Num answers: Number of answers
+
+# Answer form
+quiz.form.Answers: Answer form
+quiz.form.0: Answer 1
+quiz.form.1: Answer 2
+quiz.form.2: Answer 3
+quiz.form.3: Answer 4
+quiz.form.Is right: Is right?
+
+# Users form
+users.quiz.connection.created: Quizes for given users are activated.
+
+# Questions translations
+
+admin.questions.list.page_title:    Questions
+admin.questions.list.title.comment: list
+
+admin.questions.list.quiz: Quiz
+admin.questions.list.text: Question
+admin.questions.list.type: Question type
+
+# Quiz frontend
+
+# index page
+quiz.index.link:                List of quizes
+quiz.index.page_title:          List of quizes
+quiz.index.title.comment:       avaliable
+quiz.index.table.header.quiz:   Quiz
+quiz.index.table.header.start:  Action
+quiz.index.table.header.status: Status
+quiz.index.table.start_link:    Start
+quiz.index.table.continue_link: Continue
+quiz.index.my_link:             My
+quiz.quiz.active:               active
+quiz.quiz.success:              avaliable
+
+# my quiz page 
+quiz.my.page_title:      My
+quiz.my.title.comment:   list
+quiz.my.active_tests:    Active quizes
+quiz.my.avaliable_tests: Avaliable quizes
+quiz.my.completed_tests: Completed quizes
+quiz.my.table.header.num_right_answers: Right answers
+quiz.my.table.header.percent:    %
+quiz.my.table.header.started_at: Quiz date
+
+# start page
+quiz.start.page_title:    Start
+quiz.start.title.comment: quiz
+quiz.start.start_link:    Go!
+
+# question page
+quiz.question.title.comment: going
+quiz.question.submit:        Submit
+quiz.question.previous:      Previous
+quiz.question.next:          Next
+quiz.question.timeleft:      Left
+quiz.question.min:           min.
+quiz.question.sec:           sec.
+
+# prefinal page
+quiz.prefinal.page_title:    Finishing
+quiz.prefinal.title.comment: last step
+quiz.prefinal.note:          "You answered on all questions. If you press the button Finish the quiz will be completed and you cannot change the result. If you are not sure please press the button Back. Вы ответили на все вопросы теста. Если Вы нажмёте кнопку Завершить, то тест закончится, и Вы не сможете изменить результат. Если Вы не уверены в каком-либо вопросе, нажмите кнопку Вернуться."
+quiz.prefinal.back:          Back
+quiz.prefinal.finish:        Finish quiz
+
+# final page
+quiz.final.page_title:            Results
+quiz.final.title.comment:         Results
+quiz.final.total_questions:       Total number of questions
+quiz.final.right_answers:         Correct
+quiz.final.percent:               Процент правильно отвеченных
+quiz.final.questions_with_errors: Вопросы, в которых были сделаны ошибки
+quiz.final.errors_note:           "Здесь указаны названия вопросов, в которых были сделаны ошибки. Если Вы не отвечали на какой-либо вопрос, он не указывается в списке."
+
+# admin users page
+admin.users.index.page_title:    Тестирование пользователей
+admin.users.index.title.comment: закрытые тесты
+admin.users.index.choose_group:  Выбрать группу
+admin.users.list.check:          "#"
+admin.users.list.id:             Id
+admin.users.list.name:           Логин
+admin.users.list.actions:        Действия
+admin.users.index.connect_with:  Добавить в тест
+admin.users.index.submit:        Далее
+
+
