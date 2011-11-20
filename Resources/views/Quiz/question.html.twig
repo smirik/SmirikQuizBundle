@@ -42,7 +42,10 @@ window.setInterval(function() {
 </div>
 {% endif %}
 
-<h3>#{{number+1}}. {{ question.text | raw }}</h3>
+<h3>#{{number+1}}.</h3>
+<div class="question_text">
+   {{ question.text | raw }}
+</div>
 
 {% if question.file %}
   <img src="{{ asset(question.webPath) }}" alt="{{ question.text }}">

@@ -22,7 +22,7 @@ class UserQuestion
       throw new \Exception ('Question and Answer does not respond');
     }
     
-    if ($answer_text)
+    if ($answer_text !== false)
     {
       if ($answer->getIsRight() == $answer_text)
       {

@@ -20,7 +20,7 @@ class User extends BaseUser
     
     /**
      * @var string $name
-     * @ORM\Column(name="name", type="string", length=150, nullable="true")
+     * @ORM\Column(name="name", type="string", length=150, nullable=true)
      */
     private $name;
 

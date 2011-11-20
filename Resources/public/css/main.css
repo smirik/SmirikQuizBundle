@@ -13,5 +13,5 @@ div.question ul.answers li { margin: 15px 0; font-size: 1.1em; }
 div.question ul.answers li span.answer_text { padding-left: 10px; color: #404040; }
 
 div.prefinal_note { margin: 20px 0px; }
-
+div.question_text { margin: 10px 0px 10px 10px; border-left: 3px #cacaca solid; padding: 0 0 0 15px; font-size: 1.1em; }
 .black { color: #404040; }
