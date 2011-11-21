@@ -85,7 +85,8 @@ class AdminQuestionController extends Controller
       $entity = new Question();
       if ($quiz_id)
       {
-        $entity->setQuizId($quiz_id);
+        $quiz    = $em->getRepository('SmirikQuizBundle:Quiz')->find($quiz_id);
+        $entity->addQuiz($quiz);
       }
       $form   = $this->createForm(new QuestionType(), $entity);
 

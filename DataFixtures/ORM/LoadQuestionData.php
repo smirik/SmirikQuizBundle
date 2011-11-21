@@ -13,7 +13,7 @@ class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterfac
   public function load($manager)
   {
     $question = new Question();
-    $question->setQuiz($this->getReference('test_quiz'));
+    $question->addQuiz($this->getReference('test_quiz'));
     $question->setText('Test question №1');
     $question->setType('text');
     $question->setNumAnswers(1);
@@ -26,7 +26,7 @@ class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterfac
     for ($i=2; $i<6; $i++)
     {
       $question = new Question();
-      $question->setQuiz($this->getReference('test_quiz'));
+      $question->addQuiz($this->getReference('test_quiz'));
       $question->setText('Test question №'.$i);
       $question->setType('text');
       $question->setNumAnswers(4);
@@ -40,7 +40,7 @@ class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterfac
     for ($i=1; $i<6; $i++)
     {
       $question = new Question();
-      $question->setQuiz($this->getReference('test_quiz_without_time'));
+      $question->addQuiz($this->getReference('test_quiz_without_time'));
       $question->setText('Test no time question №'.$i);
       $question->setType('text');
       $question->setNumAnswers(4);

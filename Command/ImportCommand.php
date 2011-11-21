@@ -76,7 +76,7 @@ class ImportCommand extends ContainerAwareCommand
            * Structure: type of record, title, type, file, number of answers, 
            */
           $question = new Question();
-          $question->setQuiz($quiz);
+          $question->addQuiz($quiz);
           $question->setText($data[1]);
           $question->setType($data[2]);
           $question->setNumAnswers($data[4]);

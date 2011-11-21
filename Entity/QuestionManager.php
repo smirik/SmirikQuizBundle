@@ -36,6 +36,17 @@ class QuestionManager
    */
   public function getRandomQuestionsForQuiz($quiz, $num = 3)
   {
+    $total_num = $this->repository->createQueryBuilder('q')
+      ->select('COUNT(q.id) num')
+      ->leftJoin('q.quizes', 'quiz')
+      ->where('quiz.id = :quiz_id')
+      ->setParameter('quiz_id', $quiz->getId())
+      ->setMaxResults(1)
+      ->getQuery()
+      ->getSingleResult();
+    
+    $total_num = $total_num['num'];
+    
     $total_num = $this->repository->getNumberOfQuestionsForQuiz($quiz);
     /**
      * If there is no enough questions
@@ -67,7 +78,8 @@ class QuestionManager
     for ($i=0; $i<$num; $i++)
     {
       $question = $this->repository->createQueryBuilder('q')
-        ->where('q.quiz_id = :quiz_id')
+        ->leftJoin('q.quizes', 'quiz')
+        ->where('quiz.id = :quiz_id')
         ->setParameter('quiz_id', $quiz->getId())
         ->setFirstResult($rand_numbers[$i])
         ->setMaxResults(1)
