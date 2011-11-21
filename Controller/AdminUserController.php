@@ -27,6 +27,7 @@ class AdminUserController extends Controller
     $um = $this->get('fos_user.user_manager');
     $gm = $this->get('fos_user.group_manager');
     $qm = $this->get('quiz.manager');
+    $em = $this->getDoctrine()->getEntityManager();
     
     $group_id = $this->getRequest()->query->get('group_id', false);
     $groups = $gm->findGroups();
@@ -38,7 +39,12 @@ class AdminUserController extends Controller
        * So let's take all users 
        * @todo Get users by group_id
        */
-      $users = $um->findUsers();
+      $users = $em->getRepository('Smirik\QuizBundle\Entity\User')->createQueryBuilder('u')
+        ->leftJoin('u.groups', 'groups')
+        ->where('groups.id = :group_id')
+        ->setParameter('group_id', $group_id)
+        ->getQuery()
+        ->getResult();
     } else
     {
       $users = $um->findUsers();
@@ -47,9 +53,10 @@ class AdminUserController extends Controller
     $quizes = $qm->findAll();
     
     return array(
-      'users'  => $users,
-      'quizes' => $quizes,
-      'groups' => $groups,
+      'users'    => $users,
+      'quizes'   => $quizes,
+      'groups'   => $groups,
+      'group_id' => $group_id,
     );
   }
   

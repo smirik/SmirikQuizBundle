@@ -16,10 +16,11 @@
 {% endif %}
 
 {{ 'admin.users.index.choose_group'|trans }}
-<form action="{{ path('smirik_quiz_admin_users_index') }}" method="GET">
-<select name="group_id" onchange="">
+<form action="{{ path('smirik_quiz_admin_users_index') }}" id="user_group_choose_form" method="GET">
+<select name="group_id" onchange="$('#user_group_choose_form').submit();">
+  <option value="0">{{ 'admin.users.select.no_group'|trans }}</option>
 {% for group in groups %}
-    <option value="{{ group.id }}">{{ group.name }}</option>
+    <option value="{{ group.id }}" {% if group.id == group_id %}selected{% endif %}>{{ group.name }}</option>
 {% endfor %}
 </select>
 </form>
