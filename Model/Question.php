@@ -56,4 +56,10 @@ class Question
     return $this->getText();
   }
   
+  public function getFirstQuiz()
+  {
+    return $this->getQuizes()->first();
+  }
+  
+  
 }

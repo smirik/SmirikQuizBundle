@@ -9,7 +9,7 @@
 {% block body %}
 
 <form class="form-stacked question_form" action="{{ path('smirik_quiz_admin_questions_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
-  {{ form_row(edit_form.quiz) }}
+  {{ form_row(edit_form.quizes) }}
   {{ form_row(edit_form.text) }}
   {{ form_row(edit_form.type) }}
   {{ form_row(edit_form.v_file) }}
@@ -45,8 +45,9 @@
     
     
     <div id="data-prototype" data-prototype="{{ form_widget(edit_form.answers.get('prototype')) | e }}"></div>
-    
+    <!--
     <a href="#" id="add-another-answer">{{ 'admin.questions.add_answer'|trans }}</a>
+    -->
 
     <script type="text/javascript">
         var answersCount = '{{ edit_form.answers | length }}';
@@ -72,7 +73,7 @@
 <form action="{{ path('smirik_quiz_admin_questions_delete', { 'id': entity.id }) }}" method="post">
 {{ form_widget(delete_form) }}
 <div class="well">
-  <a href="{{ path('smirik_quiz_admin_questions', { 'quiz_id': entity.quiz.id}) }}" class="btn">
+  <a href="{{ path('smirik_quiz_admin_questions', { 'quiz_id': entity.firstquiz.id }) }}" class="btn">
     {{ 'quiz.form.actions.back'|trans }}
   </a>
   <input type="submit" class="btn danger" value="{{ 'quiz.form.actions.delete'|trans }}">

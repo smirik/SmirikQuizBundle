@@ -257,4 +257,5 @@ class Question extends ModelQuestion
     {
         return $this->quizes;
     }
+    
 }

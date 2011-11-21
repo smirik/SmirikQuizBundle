@@ -11,7 +11,7 @@ class QuestionType extends AbstractType
   public function buildForm(FormBuilder $builder, array $options)
   {
     $builder
-      ->add('quiz')
+      ->add('quizes')
       ->add('text')
       ->add('type')
       ->add('v_file')

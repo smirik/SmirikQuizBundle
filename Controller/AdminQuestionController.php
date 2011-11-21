@@ -31,11 +31,11 @@ class AdminQuestionController extends Controller
       
       if ($quiz_id)
       {
-        $entities = $em->getRepository('SmirikQuizBundle:Question')->findBy(array(
-          'quiz_id' => $quiz_id,
-        ));
+        $quiz     = $em->getRepository('SmirikQuizBundle:Quiz')->find($quiz_id);
+        $entities = $quiz->getQuestions();
       } else
       {
+        $quiz     = false;
         $entities = $em->getRepository('SmirikQuizBundle:Question')->findAll();
       }
       
@@ -46,6 +46,7 @@ class AdminQuestionController extends Controller
         'entities' => $entities,
         'quizes'   => $quizes,
         'quiz_id'  => $quiz_id,
+        'quiz'     => $quiz,
       );
     }
 
@@ -194,11 +195,47 @@ class AdminQuestionController extends Controller
       if ($editForm->isValid()) {
         
         $entity->upload();
-        
         $em->persist($entity);
         $em->flush();
+        
+        /**
+         * Dealing with answers
+         * @todo FIX BY STANDART WAY
+         */
+        $num_answers = $entity->getNumAnswers();
+        $current     = count($entity->getAnswers());
 
-        return $this->redirect($this->generateUrl('smirik_quiz_admin_questions', array('quiz_id' => $entity->getQuiz()->getId())));
+        if ($num_answers > $current)
+        {
+          $diff = $num_answers-$current;
+          for ($i=0; $i<$diff; $i++)
+          {
+            $answer = new Answer();
+            $answer->setQuestion($entity);
+            $entity->addAnswer($answer);
+          }
+
+          $em->persist($entity);
+          $em->flush();
+          
+        } elseif ($num_answers < $current)
+        {
+          $diff = $num_answers;
+          $i = 0;
+          foreach ($entity->getAnswers() as $answer)
+          {
+            if ($i >= $diff)
+            {
+              $entity->getAnswers()->removeElement($answer);
+              $em->remove($answer);
+            }
+            $i++;
+          }
+          $em->persist($entity);
+          $em->flush();
+        }
+
+        return $this->redirect($this->generateUrl('smirik_quiz_admin_questions_edit', array('id' => $entity->getId())));
       }
 
       return array(
