@@ -4,7 +4,7 @@ namespace Smirik\QuizBundle\Entity;
 
 use FOS\UserBundle\Entity\Group as BaseGroup;
 use Doctrine\ORM\Mapping as ORM;
-use Smirik\QuizBundle\Entity\User;
+use Smirik\QuizBundle\Entity\User as User;
 
 /**
  * @ORM\Entity
@@ -20,10 +20,7 @@ class Group extends BaseGroup
      protected $id;
 
      /**
-      * @ORM\ManyToMany(targetEntity="Smirik\QuizBundle\Entity\User")
-      *      joinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")},
-      *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
-      * )
+      * @ORM\ManyToMany(targetEntity="Smirik\QuizBundle\Entity\User", inversedBy="groups")
       */
      public $users;
 
