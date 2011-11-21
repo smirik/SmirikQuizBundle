@@ -80,7 +80,7 @@ class Question extends ModelQuestion
     /**
      * @ORM\OneToMany(targetEntity="Answer", mappedBy="question", cascade={"all"})
      */
-    protected $answers;
+    public $answers;
 
     public function __construct()
     {

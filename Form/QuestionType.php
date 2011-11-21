@@ -13,7 +13,9 @@ class QuestionType extends AbstractType
     $builder
       ->add('quizes')
       ->add('text')
-      ->add('type')
+      ->add('type', 'choice', array(
+        'choices' => array('text' => 'text', 'radio' => 'radio', 'checkbox' => 'checkbox')
+      ))
       ->add('v_file')
       ->add('num_answers')
       ->add('answers', 'collection', array(

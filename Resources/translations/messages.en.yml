@@ -155,6 +155,7 @@ admin.users.list.name:           Login
 admin.users.list.actions:        actions
 admin.users.index.connect_with:  Connect to quiz
 admin.users.index.submit:        Next
+admin.users.select.no_group:     All
 
 # admin sub navigation
 admin.quiz.navigation.home:       Home

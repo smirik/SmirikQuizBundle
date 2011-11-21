@@ -155,6 +155,7 @@ admin.users.list.name:           Логин
 admin.users.list.actions:        Действия
 admin.users.index.connect_with:  Добавить в тест
 admin.users.index.submit:        Далее
+admin.users.select.no_group:     Все
 
 # admin sub navigation
 admin.quiz.navigation.home:       Главная
