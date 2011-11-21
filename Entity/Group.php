@@ -21,6 +21,7 @@ class Group extends BaseGroup
 
      /**
       * @ORM\ManyToMany(targetEntity="Smirik\QuizBundle\Entity\User", inversedBy="groups")
+      * @ORM\JoinTable(name="users_groups")
       */
      public $users;
 
