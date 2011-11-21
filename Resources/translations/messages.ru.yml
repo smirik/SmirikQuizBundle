@@ -153,4 +153,10 @@ admin.users.list.actions:        Действия
 admin.users.index.connect_with:  Добавить в тест
 admin.users.index.submit:        Далее
 
-
+# admin sub navigation
+admin.quiz.navigation.home:       Главная
+admin.quiz.navigation.quizes:     Тесты
+admin.quiz.navigation.questions:  Вопросы
+admin.quiz.navigation.users_quiz: Запись пользователей
+admin.quiz.navigation.groups:     Группы
+admin.quiz.navigation.content:    SonataAdmin

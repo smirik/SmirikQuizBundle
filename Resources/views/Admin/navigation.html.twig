@@ -1,0 +1,15 @@
+{% block smirik_quiz_navigation %}
+<ul class="breadcrumb">
+  {% set menuItem = knp_menu_get('SmirikQuizBundle:Builder:mainMenu') %}
+  {% for item in menuItem %}
+    <li>
+      {% if item.isCurrent %}
+        {{ item.label|trans }}
+      {% else %}
+        <a href="{{ item.uri }}">{{ item.label|trans }}</a>
+      {% endif %}
+      <span class="divider">|</span>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}
