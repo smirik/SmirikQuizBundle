@@ -5,6 +5,7 @@ namespace Smirik\QuizBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Smirik\QuizBundle\Model\Quiz as ModelQuiz;
+use Smirik\QuizBundle\Entity\Question as Question;
 
 /**
  * Smirik\QuizBundle\Entity\Quiz
@@ -81,6 +82,16 @@ class Quiz extends ModelQuiz
      */
     protected $updated_at;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Question", mappedBy="smirik_quiz", cascade={"persist"})
+     */
+    private $questions;
+    
+    public function __construct()
+    {
+      $this->questions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -249,5 +260,25 @@ class Quiz extends ModelQuiz
     public function getIsOpened()
     {
         return $this->is_opened;
+    }
+
+    /**
+     * Add questions
+     *
+     * @param Smirik\QuizBundle\Entity\Question $questions
+     */
+    public function addQuestion(\Smirik\QuizBundle\Entity\Question $questions)
+    {
+        $this->questions[] = $questions;
+    }
+
+    /**
+     * Get questions
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getQuestions()
+    {
+        return $this->questions;
     }
 }

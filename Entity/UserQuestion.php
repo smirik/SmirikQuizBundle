@@ -360,4 +360,25 @@ class UserQuestion extends ModelUserQuestion
         return $this->answer;
     }
     
+
+    /**
+     * Set answer_text
+     *
+     * @param string $answerText
+     */
+    public function setAnswerText($answerText)
+    {
+        $this->answer_text = $answerText;
+    }
+
+    /**
+     * Get answer_text
+     *
+     * @return string 
+     */
+    public function getAnswerText()
+    {
+        return $this->answer_text;
+    }
+    
 }

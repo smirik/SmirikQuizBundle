@@ -5,6 +5,7 @@ namespace Smirik\QuizBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Smirik\QuizBundle\Model\Question as ModelQuestion;
+use Smirik\QuizBundle\Entity\Quiz as Quiz;
 
 /**
  * Smirik\QuizBundle\Entity\Question
@@ -24,17 +25,13 @@ class Question extends ModelQuestion
     private $id;
 
     /**
-     * @var integer $quiz_id
-     *
-     * @ORM\Column(name="quiz_id", type="integer")
+     * @ORM\ManyToMany(targetEntity="Quiz", inversedBy="smirik_questions", cascade={"persist"})
+     * @ORM\JoinTable(name="smirik_quiz_questions",
+     * joinColumns={@ORM\JoinColumn(name="question_id", referencedColumnName="id")},
+     * inverseJoinColumns={@ORM\JoinColumn(name="quiz_id", referencedColumnName="id")}
+     * )
      */
-    private $quiz_id;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Quiz", inversedBy="smirik_quiz")
-     * @ORM\JoinColumn(name="quiz_id", referencedColumnName="id")
-     */
-    private $quiz;
+    private $quizes;
 
     /**
      * @var text $text
@@ -85,6 +82,11 @@ class Question extends ModelQuestion
      */
     protected $answers;
 
+    public function __construct()
+    {
+      $this->quizes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * Get id
      *
@@ -93,26 +95,6 @@ class Question extends ModelQuestion
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set quiz_id
-     *
-     * @param integer $quizId
-     */
-    public function setQuizId($quizId)
-    {
-        $this->quiz_id = $quizId;
-    }
-
-    /**
-     * Get quiz_id
-     *
-     * @return integer 
-     */
-    public function getQuizId()
-    {
-        return $this->quiz_id;
     }
 
     /**
@@ -234,31 +216,6 @@ class Question extends ModelQuestion
     {
         return $this->updated_at;
     }
-
-    /**
-     * Set quiz
-     *
-     * @param Smirik\QuizBundle\Entity\Quiz $quiz
-     */
-    public function setQuiz(\Smirik\QuizBundle\Entity\Quiz $quiz)
-    {
-        $this->quiz = $quiz;
-    }
-
-    /**
-     * Get quiz
-     *
-     * @return Smirik\QuizBundle\Entity\Quiz 
-     */
-    public function getQuiz()
-    {
-        return $this->quiz;
-    }
-    
-    public function __construct()
-    {
-        $this->answers = new \Doctrine\Common\Collections\ArrayCollection();
-    }
     
     /**
      * Add answers
@@ -280,4 +237,24 @@ class Question extends ModelQuestion
         return $this->answers;
     }
     
+
+    /**
+     * Add quizes
+     *
+     * @param Smirik\QuizBundle\Entity\Quiz $quizes
+     */
+    public function addQuiz(\Smirik\QuizBundle\Entity\Quiz $quizes)
+    {
+        $this->quizes[] = $quizes;
+    }
+
+    /**
+     * Get quizes
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getQuizes()
+    {
+        return $this->quizes;
+    }
 }
