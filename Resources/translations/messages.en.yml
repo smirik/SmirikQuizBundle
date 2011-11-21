@@ -61,10 +61,11 @@ quiz.form.Is active:     Is active?
 quiz.form.Is opened:     Is public?
 
 # Question form
-quiz.form.Quiz: Quiz
-quiz.form.Text: Question text
-quiz.form.Type: Question type
-quiz.form.File: File
+quiz.form.Quiz:   Quiz
+quiz.form.Quizes: Quizes
+quiz.form.Text:   Question text
+quiz.form.Type:   Question type
+quiz.form.File:   File
 quiz.form.Num answers: Number of answers
 
 # Answer form
@@ -74,6 +75,7 @@ quiz.form.1: Answer 2
 quiz.form.2: Answer 3
 quiz.form.3: Answer 4
 quiz.form.Is right: Is right?
+quiz.form.V file: File
 
 # Users form
 users.quiz.connection.created: Quizes for given users are activated.
@@ -118,6 +120,7 @@ quiz.start.title.comment: quiz
 quiz.start.start_link:    Go!
 
 # question page
+quiz.question.page_title:    Quiz is coming
 quiz.question.title.comment: going
 quiz.question.submit:        Submit
 quiz.question.previous:      Previous
@@ -129,7 +132,7 @@ quiz.question.sec:           sec.
 # prefinal page
 quiz.prefinal.page_title:    Finishing
 quiz.prefinal.title.comment: last step
-quiz.prefinal.note:          "You answered on all questions. If you press the button Finish the quiz will be completed and you cannot change the result. If you are not sure please press the button Back. Вы ответили на все вопросы теста. Если Вы нажмёте кнопку Завершить, то тест закончится, и Вы не сможете изменить результат. Если Вы не уверены в каком-либо вопросе, нажмите кнопку Вернуться."
+quiz.prefinal.note:          "You answered on all questions. If you press the button Finish the quiz will be completed and you cannot change the result. If you are not sure please press the button Back."
 quiz.prefinal.back:          Back
 quiz.prefinal.finish:        Finish quiz
 
@@ -138,19 +141,25 @@ quiz.final.page_title:            Results
 quiz.final.title.comment:         Results
 quiz.final.total_questions:       Total number of questions
 quiz.final.right_answers:         Correct
-quiz.final.percent:               Процент правильно отвеченных
-quiz.final.questions_with_errors: Вопросы, в которых были сделаны ошибки
-quiz.final.errors_note:           "Здесь указаны названия вопросов, в которых были сделаны ошибки. Если Вы не отвечали на какой-либо вопрос, он не указывается в списке."
+quiz.final.percent:               Correct in %
+quiz.final.questions_with_errors: Questions with wrong answers
+quiz.final.errors_note:           "Here you can see the title of questions you have answered wrong. If you did not answer on a question it will not be in this list."
 
 # admin users page
-admin.users.index.page_title:    Тестирование пользователей
-admin.users.index.title.comment: закрытые тесты
-admin.users.index.choose_group:  Выбрать группу
+admin.users.index.page_title:    Users quizes
+admin.users.index.title.comment: closed quizes
+admin.users.index.choose_group:  Choose the group
 admin.users.list.check:          "#"
 admin.users.list.id:             Id
-admin.users.list.name:           Логин
-admin.users.list.actions:        Действия
-admin.users.index.connect_with:  Добавить в тест
-admin.users.index.submit:        Далее
+admin.users.list.name:           Login
+admin.users.list.actions:        actions
+admin.users.index.connect_with:  Connect to quiz
+admin.users.index.submit:        Next
 
-
+# admin sub navigation
+admin.quiz.navigation.home:       Home
+admin.quiz.navigation.quizes:     Quizes
+admin.quiz.navigation.questions:  Questions
+admin.quiz.navigation.users_quiz: Users to quiz
+admin.quiz.navigation.groups:     Groups
+admin.quiz.navigation.content:    SonataAdmin

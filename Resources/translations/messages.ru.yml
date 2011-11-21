@@ -61,10 +61,11 @@ quiz.form.Is active:     Включен?
 quiz.form.Is opened:     Публичный?
 
 # Question form
-quiz.form.Quiz: Тест
-quiz.form.Text: Текст вопроса
-quiz.form.Type: Тип вопроса
-quiz.form.File: Файл
+quiz.form.Quiz:   Тест
+quiz.form.Quizes: Тесты
+quiz.form.Text:   Текст вопроса
+quiz.form.Type:   Тип вопроса
+quiz.form.File:   Файл
 quiz.form.Num answers: Количество ответов
 
 # Answer form
@@ -74,6 +75,7 @@ quiz.form.1: Ответ 2
 quiz.form.2: Ответ 3
 quiz.form.3: Ответ 4
 quiz.form.Is right: Правильный?
+quiz.form.V file: Файл
 
 # Users form
 users.quiz.connection.created: Тесты для указанных пользователей активированы.
@@ -118,6 +120,7 @@ quiz.start.title.comment: теста
 quiz.start.start_link:    Поехали!
 
 # question page
+quiz.question.page_title:    Прохождение теста
 quiz.question.title.comment: прохождение
 quiz.question.submit:        Ответить
 quiz.question.previous:      Назад
