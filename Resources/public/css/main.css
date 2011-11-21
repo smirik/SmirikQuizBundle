@@ -7,6 +7,7 @@ table.answers tr td { vertical-align: middle; }
 
 form.question_form label { padding: 10px 0 2px 0; }
 form.question_form table.answers tr td label { padding: 0; }
+form.question_form textarea { width: 500px; height: 200px; }
 
 div.question ul.answers { margin: 10px 0 20px 0; }
 div.question ul.answers li { margin: 15px 0; font-size: 1.1em; }
