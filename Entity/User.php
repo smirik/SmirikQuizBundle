@@ -25,11 +25,6 @@ class User extends BaseUser
      */
     private $name;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Smirik\QuizBundle\Entity\Group", mappedBy="users")
-     */
-    protected $groups;
-
     public function __construct()
     {
       parent::__construct();
