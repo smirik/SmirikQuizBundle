@@ -20,13 +20,13 @@ class Group extends BaseGroup
      protected $id;
 
      /**
-      * @ORM\ManyToMany(targetEntity="Smirik\QuizBundle\Entity\User")
-      * @ORM\JoinTable(name="users_groups",
-      *      joinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")},
-      *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
-      * )
-      */
-     protected $users;
+       * @ORM\ManyToMany(targetEntity="Smirik\QuizBundle\Entity\User")
+       * @ORM\JoinTable(name="users_groups",
+       *      joinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")},
+       *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
+       * )
+       */
+     private $users;
      
     /**
      * Get id

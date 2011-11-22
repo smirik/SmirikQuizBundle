@@ -32,7 +32,13 @@ class AdminQuestionController extends Controller
       if ($quiz_id)
       {
         $quiz     = $em->getRepository('SmirikQuizBundle:Quiz')->find($quiz_id);
-        $entities = $quiz->getQuestions();
+        if (is_object($quiz))
+        {
+          $entities = $quiz->getQuestions();
+        } else 
+        {
+          $entities = $em->getRepository('SmirikQuizBundle:Question')->findAll();
+        }
       } else
       {
         $quiz     = false;
@@ -262,7 +268,7 @@ class AdminQuestionController extends Controller
             $em = $this->getDoctrine()->getEntityManager();
             $entity = $em->getRepository('SmirikQuizBundle:Question')->find($id);
             
-            $quiz_id = $entity->getQuiz()->getId();
+            $quiz_id = $entity->getFirstQuiz()->getId();
             
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Question entity.');

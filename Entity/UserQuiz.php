@@ -31,14 +31,14 @@ class UserQuiz extends ModelUserQuiz
     private $user_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Smirik\QuizBundle\Entity\User", inversedBy="fos_user", cascade={"all"})
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Smirik\QuizBundle\Entity\User", inversedBy="fos_user")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Quiz", inversedBy="smirik_quiz", cascade={"all"})
-     * @ORM\JoinColumn(name="quiz_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Quiz", inversedBy="smirik_quiz")
+     * @ORM\JoinColumn(name="quiz_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $quiz;
     
@@ -57,7 +57,7 @@ class UserQuiz extends ModelUserQuiz
     private $questions;
 
     /**
-     * @ORM\OneToMany(targetEntity="UserQuestion", mappedBy="user_quiz", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="UserQuestion", mappedBy="user_quiz")
      */
     private $users_questions;
 

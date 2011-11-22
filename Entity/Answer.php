@@ -31,7 +31,7 @@ class Answer extends ModelAnswer
 
     /**
      * @ORM\ManyToOne(targetEntity="Question", inversedBy="smirik_questions")
-     * @ORM\JoinColumn(name="question_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="question_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $question;
 

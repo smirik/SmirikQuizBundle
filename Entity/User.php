@@ -25,6 +25,11 @@ class User extends BaseUser
      */
     private $name;
 
+    /**
+     * @ORM\OneToMany(targetEntity="UserQuestion", mappedBy="user", cascade={"all"})
+     */
+    public $users_questions;
+
     public function __construct()
     {
       parent::__construct();

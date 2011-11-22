@@ -25,7 +25,7 @@ class Question extends ModelQuestion
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Quiz", inversedBy="smirik_questions", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Quiz", inversedBy="smirik_questions")
      * @ORM\JoinTable(name="smirik_quiz_questions",
      * joinColumns={@ORM\JoinColumn(name="question_id", referencedColumnName="id")},
      * inverseJoinColumns={@ORM\JoinColumn(name="quiz_id", referencedColumnName="id")}

@@ -30,8 +30,8 @@ class UserQuestion extends ModelUserQuestion
     private $user_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Smirik\QuizBundle\Entity\User", inversedBy="fos_user", cascade={"all"})
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Smirik\QuizBundle\Entity\User", inversedBy="fos_user")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $user;
 
@@ -43,8 +43,8 @@ class UserQuestion extends ModelUserQuestion
     private $quiz_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Quiz", inversedBy="smirik_quiz", cascade={"all"})
-     * @ORM\JoinColumn(name="quiz_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Quiz", inversedBy="smirik_quiz")
+     * @ORM\JoinColumn(name="quiz_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $quiz;
 
@@ -56,8 +56,8 @@ class UserQuestion extends ModelUserQuestion
     private $question_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Question", inversedBy="smirik_questions", cascade={"all"})
-     * @ORM\JoinColumn(name="question_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Question", inversedBy="smirik_questions")
+     * @ORM\JoinColumn(name="question_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $question;
 
@@ -69,8 +69,8 @@ class UserQuestion extends ModelUserQuestion
     private $user_quiz_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="UserQuiz", inversedBy="smirik_users_quiz", cascade={"all"})
-     * @ORM\JoinColumn(name="user_quiz_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="UserQuiz", inversedBy="smirik_users_quiz")
+     * @ORM\JoinColumn(name="user_quiz_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $user_quiz;
 
@@ -82,8 +82,8 @@ class UserQuestion extends ModelUserQuestion
     private $answer_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Answer", inversedBy="smirik_answers", cascade={"all"})
-     * @ORM\JoinColumn(name="answer_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Answer", inversedBy="smirik_answers")
+     * @ORM\JoinColumn(name="answer_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $answer;
 

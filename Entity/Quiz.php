@@ -83,7 +83,7 @@ class Quiz extends ModelQuiz
     protected $updated_at;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Question", mappedBy="quizes", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Question", mappedBy="quizes", cascade={"all"})
      */
     private $questions;
     
