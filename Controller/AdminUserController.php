@@ -39,12 +39,8 @@ class AdminUserController extends Controller
        * So let's take all users 
        * @todo Get users by group_id
        */
-      $users = $em->getRepository('Smirik\QuizBundle\Entity\User')->createQueryBuilder('u')
-        ->leftJoin('u.groups', 'groups')
-        ->where('groups.id = :group_id')
-        ->setParameter('group_id', $group_id)
-        ->getQuery()
-        ->getResult();
+      $group = $gm->findGroupBy(array('id' => $group_id));
+      $users = $group->getUsers();
     } else
     {
       $users = $um->findUsers();
