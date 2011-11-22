@@ -19,3 +19,5 @@ div.question_text { margin: 10px 0px 10px 10px; border-left: 3px #cacaca solid; 
 
 div.span-24.last.content.clear { margin-left: 0px; padding-left: 5px; }
 div.container { width: 700px; }
+
+div.question_image { max-width: 700px; overflow: hidden; margin: 15px auto; text-align: center; border: 1px solid gray; }

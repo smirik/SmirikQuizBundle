@@ -79,6 +79,10 @@ class ImportCommand extends ContainerAwareCommand
           $question->addQuiz($quiz);
           $question->setText($data[1]);
           $question->setType($data[2]);
+          if ($data[3] != '')
+          {
+            $question->setFile($data[3]);
+          }
           $question->setNumAnswers($data[4]);
           
           if ($debug)
