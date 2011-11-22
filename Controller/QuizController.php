@@ -287,6 +287,11 @@ class QuizController extends Controller
       throw $this->createNotFoundException('UserQuiz not found');
     }
     
+    if ($user_quiz->getIsClosed())
+    {
+      return $this->redirect($this->generateUrl('smirik_quiz_index'));
+    }
+    
     return array(
       'user_quiz' => $user_quiz,
     );
