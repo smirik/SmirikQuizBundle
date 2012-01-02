@@ -18,7 +18,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
     $user->setName('test');
     $user->addRole('ROLE_ADMIN');
     $user->setEmail('smirik@gmail.com');
-    $user->setAlgorithm('sha512');
     $user->setPlainPassword('test');
     $user->setEnabled(1);
     
@@ -33,7 +32,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
       $user->setUsername('test'.$i);
       $user->setName('test'.$i);
       $user->setEmail('smirik+'.$i.'@gmail.com');
-      $user->setAlgorithm('sha512');
       $user->setPlainPassword('test'.$i);
       $user->setEnabled(1);
 
