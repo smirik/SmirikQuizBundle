@@ -42,7 +42,7 @@ class AdminQuestionController extends Controller
       } else
       {
         $quiz     = false;
-        $entities = $em->getRepository('SmirikQuizBundle:Question')->findAll();
+        $entities = false;
       }
       
       $quizes = $em->getRepository('SmirikQuizBundle:Quiz')->findAll();
