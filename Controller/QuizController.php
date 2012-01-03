@@ -28,11 +28,9 @@ class QuizController extends Controller
   public function indexAction()
   {
     $user = $this->container->get('security.context')->getToken()->getUser();
-    $qm   = $this->get('quiz.manager');
     $uqm  = $this->get('user_quiz.manager');
-    $em = $this->getDoctrine()->getEntityManager();
     
-    $active_quiz = $uqm->getAllActiveQuizForUser($user, true, $em);
+    $active_quiz = $uqm->getAllActiveQuizForUser($user, true, $this->getDoctrine()->getEntityManager());
     /**
      * Get quiz ids for active quizes
      */
@@ -45,7 +43,7 @@ class QuizController extends Controller
       }
     }
     
-    $avaliable_quiz = $qm->getAvaliableQuizes($user);
+    $avaliable_quiz = $this->get('quiz.manager')->getAvaliableQuizes($user);
     $completed_users_quiz = $uqm->getAllCompletedQuizForUser($user);
     
     return array(
@@ -64,11 +62,9 @@ class QuizController extends Controller
   public function myAction()
   {
     $user = $this->container->get('security.context')->getToken()->getUser();
-    $qm   = $this->get('quiz.manager');
     $uqm  = $this->get('user_quiz.manager');
-    $em = $this->getDoctrine()->getEntityManager();
     
-    $active_quiz = $uqm->getAllActiveQuizForUser($user, true, $em);
+    $active_quiz = $uqm->getAllActiveQuizForUser($user, true, $this->getDoctrine()->getEntityManager());
     /**
      * Get quiz ids for active quizes
      */
@@ -81,7 +77,7 @@ class QuizController extends Controller
       }
     }
     
-    $avaliable_quiz = $qm->getAvaliableQuizes($user);
+    $avaliable_quiz = $this->get('quiz.manager')->getAvaliableQuizes($user);
     $completed_users_quiz = $uqm->getAllCompletedQuizForUser($user);
     
     return array(
@@ -100,16 +96,13 @@ class QuizController extends Controller
   public function startAction($quiz_id)
   {
     $user = $this->container->get('security.context')->getToken()->getUser();
-    $em   = $this->getDoctrine()->getEntityManager();
-    $qm   = $this->get('quiz.manager');
-    $qum  = $this->get('question.manager');
     $uqm  = $this->get('user_quiz.manager');
 
     /**
      * @todo validate $quiz_id
      */
-    $quiz      = $qm->find($quiz_id);
-    $questions = $qum->getRandomQuestionsForQuiz($quiz, $quiz->getNumQuestions());
+    $quiz      = $this->get('quiz.manager')->find($quiz_id);
+    $questions = $this->get('question.manager')->getRandomQuestionsForQuiz($quiz, $quiz->getNumQuestions());
 
     /**
      * Redirect to home if quiz is not opened
@@ -124,7 +117,7 @@ class QuizController extends Controller
     $user_quiz = $uqm->getActiveQuizForUser($user, $quiz);
     if (!$user_quiz)
     {
-      $user_quiz = $uqm->create($user, $quiz, $questions, $em);
+      $user_quiz = $uqm->create($user, $quiz, $questions, $this->getDoctrine()->getEntityManager());
     }
 
     return array(
@@ -143,11 +136,7 @@ class QuizController extends Controller
   {
 
     $user = $this->container->get('security.context')->getToken()->getUser();
-    $em   = $this->getDoctrine()->getEntityManager();
-    $qm   = $this->get('quiz.manager');
-    $qum  = $this->get('question.manager');
     $uqm  = $this->get('user_quiz.manager');
-    $uqum = $this->get('user_question.manager');
 
     $user_quiz = $uqm->find($uq_id);
     if (!$user_quiz)
@@ -169,12 +158,12 @@ class QuizController extends Controller
       throw new \Exception('Bad quiz data');
     }
 
-    $question = $qum->find($questions[$number]);
+    $question = $this->get('question.manager')->find($questions[$number]);
 
     /**
      * Find UserQuestion for current question (to provide default answer value)
      */
-    $user_question = $uqum->findByUserQuiz($user_quiz, $question);
+    $user_question = $this->get('user_question.manager')->findByUserQuiz($user_quiz, $question);
     if ($user_question)
     {
       $current_answer = $user_question->getAnswerId();
@@ -217,14 +206,9 @@ class QuizController extends Controller
     }
 
     $user = $this->container->get('security.context')->getToken()->getUser();
-    $qm   = $this->get('quiz.manager');
-    $qum  = $this->get('question.manager');
-    $uqm  = $this->get('user_quiz.manager');
-    $uqum = $this->get('user_question.manager');
-    $am   = $this->get('answer.manager');
     $em   = $this->getDoctrine()->getEntityManager();
 
-    $user_quiz = $uqm->find($user_quiz_id);
+    $user_quiz = $this->get('user_quiz.manager')->find($user_quiz_id);
     $quiz      = $user_quiz->getQuiz();
     
     if (!$user_quiz)
@@ -237,13 +221,13 @@ class QuizController extends Controller
       throw new \Exception('Quiz already ended');
     }
     
-    $answer = $am->find($answer_id);
+    $answer = $this->get('answer.manager')->find($answer_id);
     if (!$answer)
     {
       throw $this->createNotFoundException('Answer not found');
     }
     
-    $question = $qum->find($question_id);
+    $question = $this->get('question.manager')->find($question_id);
     if (!$question)
     {
       throw $this->createNotFoundException('Question not found');
@@ -253,7 +237,7 @@ class QuizController extends Controller
      * Find answer for current question or create new UserQuestion
      * and add/replace answer
      */
-    $user_question = $uqum->findOrCreate($user_quiz, $question, $em);
+    $user_question = $this->get('user_question.manager')->findOrCreate($user_quiz, $question, $em);
     $user_question->addAnswer($answer, $em, $answer_text);
     
     /**
@@ -279,9 +263,7 @@ class QuizController extends Controller
    */
   public function preFinalAction($user_quiz_id)
   {
-    $uqm = $this->get('user_quiz.manager');
-
-    $user_quiz = $uqm->find($user_quiz_id);
+    $user_quiz = $this->get('user_quiz.manager')->find($user_quiz_id);
     if (!$user_quiz)
     {
       throw $this->createNotFoundException('UserQuiz not found');
@@ -305,17 +287,12 @@ class QuizController extends Controller
   public function finalAction($user_quiz_id)
   {
     $user = $this->container->get('security.context')->getToken()->getUser();
-    $qm   = $this->get('quiz.manager');
-    $qum  = $this->get('question.manager');
-    $uqm  = $this->get('user_quiz.manager');
-    $uqum = $this->get('user_question.manager');
-    $am   = $this->get('answer.manager');
     $em   = $this->getDoctrine()->getEntityManager();
     
     /**
      * Closing UserQuiz
      */
-    $user_quiz = $uqm->find($user_quiz_id);
+    $user_quiz = $this->get('user_quiz.manager')->find($user_quiz_id);
     if (!$user_quiz)
     {
       throw $this->createNotFoundException('UserQuiz not found');

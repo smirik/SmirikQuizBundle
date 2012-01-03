@@ -24,10 +24,7 @@ class AdminUserController extends Controller
   */
   public function indexAction()
   {
-    $um = $this->get('fos_user.user_manager');
     $gm = $this->get('fos_user.group_manager');
-    $qm = $this->get('quiz.manager');
-    $em = $this->getDoctrine()->getEntityManager();
     
     $group_id = $this->getRequest()->query->get('group_id', false);
     $groups = $gm->findGroups();
@@ -43,10 +40,10 @@ class AdminUserController extends Controller
       $users = $group->getUsers();
     } else
     {
-      $users = $um->findUsers();
+      $users = $this->get('fos_user.user_manager')->findUsers();
     }
     
-    $quizes = $qm->findAll();
+    $quizes = $this->get('quiz.manager')->findAll();
     
     return array(
       'users'    => $users,
@@ -64,11 +61,7 @@ class AdminUserController extends Controller
   */
   public function connectAction()
   {  
-    $um  = $this->get('fos_user.user_manager');
-    $qm  = $this->get('quiz.manager');
     $uqm = $this->get('user_quiz.manager');
-    $qum = $this->get('question.manager');
-    $em  = $this->getDoctrine()->getEntityManager();
     
     $users   = $this->getRequest()->request->get('users', false);
     $quiz_id = $this->getRequest()->request->get('quiz_id', false);
@@ -78,7 +71,7 @@ class AdminUserController extends Controller
       return $this->redirect($this->generateUrl('smirik_quiz_admin_users_index'));
     }
     
-    $quiz = $qm->find($quiz_id);
+    $quiz = $this->get('quiz.manager')->find($quiz_id);
     if (!$quiz)
     {
       return $this->redirect($this->generateUrl('smirik_quiz_admin_users_index'));
@@ -90,15 +83,15 @@ class AdminUserController extends Controller
      */
     foreach ($users as $user_id)
     {
-      $user = $um->findUserBy(array('id' => $user_id));
+      $user = $this->get('fos_user.user_manager')->findUserBy(array('id' => $user_id));
       $user_quiz = $uqm->getActiveQuizForUser($user, $quiz);
       /**
        * If user has active quiz there is no need to open one more.
        */
       if (!$user_quiz)
       {
-        $questions = $qum->getRandomQuestionsForQuiz($quiz, $quiz->getNumQuestions());
-        $user_quiz = $uqm->create($user, $quiz, $questions, $em);
+        $questions = $this->get('question.manager')->getRandomQuestionsForQuiz($quiz, $quiz->getNumQuestions());
+        $user_quiz = $uqm->create($user, $quiz, $questions, $this->getDoctrine()->getEntityManager());
       }
     }
     
