@@ -49,12 +49,8 @@
   </tbody>
 </table>
 
-<ul>
-    <li>
-        <a href="{{ path('smirik_quiz_admin_questions_new', { 'quiz_id': quiz_id }) }}">
-            {{ 'quiz.form.actions.create'|trans }}
-        </a>
-    </li>
-</ul>
+<a href="{{ path('smirik_quiz_admin_questions_new', { 'quiz_id': quiz_id }) }}" class="btn">
+  {{ 'quiz.form.actions.create'|trans }}
+</a>
 
 {% endblock %}

@@ -82,12 +82,13 @@ class AdminQuestionController extends Controller
     /**
      * Displays a form to create a new Question entity.
      *
-     * @Route("/new", name="smirik_quiz_admin_questions_new")
+     * @Route("/{quiz_id}/new", name="smirik_quiz_admin_questions_new")
      * @Template("SmirikQuizBundle:Admin\Question:new.html.twig", vars={"get"})
      */
-    public function newAction()
+    public function newAction($quiz_id)
     {
-      $quiz_id = $this->getRequest()->query->get('quiz_id', false); 
+      $em = $this->getDoctrine()->getEntityManager();
+      //$quiz_id = $this->getRequest()->query->get('quiz_id', false); 
       
       $entity = new Question();
       if ($quiz_id)

@@ -25,4 +25,7 @@ services:
   user.manager:
     class:     %user.manager.class%
     arguments: ["@doctrine.orm.entity_manager", Smirik\QuizBundle\Entity\User]
-    
+  quiz.configure_menu_listener:
+      class: Smirik\QuizBundle\EventListener\ConfigureMenuListener
+      tags:
+        - { name: kernel.event_listener, event: smirik_admin.menu_configure, method: onMenuConfigure }    

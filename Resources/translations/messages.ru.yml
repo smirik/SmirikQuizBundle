@@ -12,6 +12,9 @@ quiz.select: Выбрать тест
 
 # Quiz translations
 
+admin.quiz.menu:               Тесты
+admin.quiz.users.menu:         Активировать тесты
+
 admin.quiz.list.page_title:    Тесты
 admin.quiz.list.title.comment: список
 admin.quiz.list.id:            Id
@@ -49,33 +52,33 @@ admin.questions.edit.title.comment: редактирование
 admin.questions.create.page_title:    Вопрос
 admin.questions.create.title.comment: создание
 
-quiz.form.Smirik quizbundle questiontype: " "
+form.Smirik quizbundle questiontype: " "
 
 # Admin Forms
 # Quiz Form
-quiz.form.Title:         Заголовок
-quiz.form.Description:   Описание
-quiz.form.Time:          Продолжительность
-quiz.form.Num questions: Количество вопросов
-quiz.form.Is active:     Включен?
-quiz.form.Is opened:     Публичный?
+form.Title:         Заголовок
+form.Description:   Описание
+form.Time:          Продолжительность
+form.Num questions: Количество вопросов
+form.Is active:     Включен?
+form.Is opened:     Публичный?
 
 # Question form
-quiz.form.Quiz:   Тест
-quiz.form.Quizes: Тесты
-quiz.form.Text:   Текст вопроса
-quiz.form.Type:   Тип вопроса
-quiz.form.File:   Файл
-quiz.form.Num answers: Количество ответов
+form.Quiz:   Тест
+form.Quizes: Тесты
+form.Text:   Текст вопроса
+form.Type:   Тип вопроса
+form.File:   Файл
+form.Num answers: Количество ответов
 
 # Answer form
-quiz.form.Answers: Форма ответов
-quiz.form.0: Ответ 1
-quiz.form.1: Ответ 2
-quiz.form.2: Ответ 3
-quiz.form.3: Ответ 4
-quiz.form.Is right: Правильный?
-quiz.form.V file: Файл
+form.Answers: Форма ответов
+form.0: Ответ 1
+form.1: Ответ 2
+form.2: Ответ 3
+form.3: Ответ 4
+form.Is right: Правильный?
+form.V file: Файл
 
 # Users form
 users.quiz.connection.created: Тесты для указанных пользователей активированы.

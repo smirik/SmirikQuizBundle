@@ -3,6 +3,6 @@
     {% if required %}
         {% set attr = attr|merge({'class': attr.class|default('') ~ ' required'}) %}
     {% endif %}
-    <label{% for attrname,attrvalue in attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>{{ ('quiz.form.'~label)|trans({}) }}</label>
+    <label{% for attrname,attrvalue in attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>{{ ('form.'~label)|trans({}) }}</label>
 {% endspaceless %}
 {% endblock %}
