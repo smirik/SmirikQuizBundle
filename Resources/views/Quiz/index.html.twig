@@ -10,7 +10,7 @@
 
 <h2>{{ 'quiz.my.active_tests'|trans }}</h2>
 
-<table>
+<table class="table table-striped table-bordered">
   <tr>
     <th width="70">{{ 'quiz.index.table.header.status'|trans }}</th>
     <th>{{ 'quiz.index.table.header.quiz'|trans }}</th>
@@ -18,7 +18,7 @@
   </tr>
   {% for quiz in users_quiz %}
     <tr>
-      <td><span class="label warning">{{ 'quiz.quiz.active'|trans }}</span></td>
+      <td><span class="label label-warning">{{ 'quiz.quiz.active'|trans }}</span></td>
       <td>{{ quiz.quiz.title }}</td>
       <td width="100">
         <a href="{{ path('smirik_quiz_go', {'uq_id': quiz.id, 'number': quiz.current }) }}" class="btn">{{ 'quiz.index.table.continue_link'|trans }}</a>
@@ -29,7 +29,7 @@
   {% for quiz in avaliable_quiz %}
     {% if (quiz.id not in active_quiz_ids) %}
     <tr>
-      <td><span class="label success">{{ 'quiz.quiz.success'|trans }}</span></td>
+      <td><span class="label label-success">{{ 'quiz.quiz.success'|trans }}</span></td>
       <td>{{ quiz.title }}</td>
       <td width="100">
         <a href="{{ path('smirik_quiz_start', { 'quiz_id': quiz.id }) }}" class="btn">{{ 'quiz.index.table.start_link'|trans }}</a>
@@ -41,7 +41,7 @@
 
 {% if completed_users_quiz %}
 <h2>{{ 'quiz.my.completed_tests'|trans }}</h2>
-<table class="zebra-striped">
+<table class="table table-striped table-bordered">
   <tr>
     <th>{{ 'quiz.index.table.header.quiz'|trans }}</th>
     <th>{{ 'quiz.my.table.header.num_right_answers'|trans }}</th>

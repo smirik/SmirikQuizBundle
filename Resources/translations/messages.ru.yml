@@ -13,6 +13,7 @@ quiz.select: Выбрать тест
 # Quiz translations
 
 admin.quiz.menu:               Тесты
+admin.quiz.quizes:             Список тестов
 admin.quiz.users.menu:         Активировать тесты
 
 admin.quiz.list.page_title:    Тесты
