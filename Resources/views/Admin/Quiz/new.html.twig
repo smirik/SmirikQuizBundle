@@ -8,17 +8,15 @@
 
 {% block body %}
 
-<form class="form-stacked basic" action="{{ path('smirik_quiz_admin_quiz_create') }}" method="post" {{ form_enctype(form) }}>
+<form class="form-horizontal" action="{{ path('smirik_quiz_admin_quiz_create') }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
-    <div class="actions">
-      <input type="submit" class="btn primary large" value="{{ 'quiz.form.actions.create'|trans }}">
+    <div class="well">
+      <a href="{{ path('smirik_quiz_admin_quiz') }}" class="btn">
+        {{ 'quiz.form.actions.back'|trans }}
+      </a>
+      <input type="submit" class="btn btn-primary" value="{{ 'quiz.form.actions.create'|trans }}">
     </div>
 </form>
 
-<div class="well">
-  <a href="{{ path('smirik_quiz_admin_quiz') }}" class="btn">
-    {{ 'quiz.form.actions.back'|trans }}
-  </a>
-</div>
 
 {% endblock %}

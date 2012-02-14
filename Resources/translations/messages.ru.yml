@@ -3,6 +3,7 @@ quiz.form.actions.create: Создать
 quiz.form.actions.edit:   Редактировать
 quiz.form.actions.back:   Вернуться
 quiz.form.actions.delete: Удалить
+quiz.form.actions.save :  Сохранить
 
 admin.quiz.form.actions:        Действия
 admin.quiz.form.created_at:     Создан
@@ -52,6 +53,11 @@ admin.questions.edit.title.comment: редактирование
 
 admin.questions.create.page_title:    Вопрос
 admin.questions.create.title.comment: создание
+
+admin.quiz.question.form.table:        Ответы
+admin.quiz.question.form.table.title:  Ответ 
+admin.quiz.question.form.table.file:   Файл
+admin.quiz.question.form.table.answer: Правильный ответ
 
 form.Smirik quizbundle questiontype: " "
 

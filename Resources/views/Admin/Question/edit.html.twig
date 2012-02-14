@@ -8,29 +8,38 @@
 
 {% block body %}
 
-<form class="form-stacked question_form" action="{{ path('smirik_quiz_admin_questions_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+<form class="form-horizontal" action="{{ path('smirik_quiz_admin_questions_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
   {{ form_row(edit_form.quizes) }}
   {{ form_row(edit_form.text) }}
   {{ form_row(edit_form.type) }}
   {{ form_row(edit_form.v_file) }}
   {{ form_row(edit_form.num_answers) }}
 
-  <table id="answers_collection" class="answers">
+  <h2>{{ 'admin.quiz.question.form.table'|trans }}</h2>
+  <br />
+  
+  <table id="answers_collection" class="table table-striped table-bordered table-condensed">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>{{ 'admin.quiz.question.form.table.title'|trans }}</th>
+      <th>{{ 'admin.quiz.question.form.table.file'|trans }}</th>
+      <th>{{ 'admin.quiz.question.form.table.answer'|trans }}</th>
+    </tr>
+    </thead>
     {% for answer in edit_form.answers %}
       <tr>
       <td>
         {{ loop.index }}
       </td>
       <td>
-        {{ form_label(answer.title) }}
         {{ form_errors(answer.title) }}
-        {{ form_widget(answer.title, { 'attr': {'class': 'span6'}}) }}
+        {{ form_widget(answer.title, { 'attr': {'class': 'span11'}}) }}
       </td>
       <td>{{ form_row(answer.v_file) }}</td>
       <td>
-        {{ form_label(answer.is_right) }}
         {{ form_errors(answer.is_right) }}
-        {{ form_widget(answer.is_right, { 'attr': {'class': 'span1'}}) }}
+        {{ form_widget(answer.is_right, { 'attr': {'class': 'span4'}}) }}
         {{ form_rest(answer) }}
       </td>
       </tr>
@@ -39,8 +48,8 @@
 
   {{ form_rest(edit_form) }}
   
-  <div class="actions">
-    <input type="submit" class="btn primary large" value="{{ 'quiz.form.actions.edit'|trans }}">
+  <div class="well">
+    <button type="submit" class="btn btn-primary">{{ 'quiz.form.actions.save'|trans }}</button>
   </div>
     
     
@@ -76,7 +85,7 @@
   <a href="{{ path('smirik_quiz_admin_questions', { 'quiz_id': entity.firstquiz.id }) }}" class="btn">
     {{ 'quiz.form.actions.back'|trans }}
   </a>
-  <input type="submit" class="btn danger" value="{{ 'quiz.form.actions.delete'|trans }}">
+  <button type="submit" class="btn btn-danger">{{ 'quiz.form.actions.delete'|trans }}</button>
 </div>
 </form>
 
