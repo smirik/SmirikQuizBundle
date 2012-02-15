@@ -25,32 +25,39 @@ Requirements
 * [FOSUserBundle](https://github.com/FriendsOfSymfony/FOSUserBundle) (please see the installation steps [here](https://github.com/FriendsOfSymfony/FOSUserBundle/blob/master/Resources/doc/index.md)).
 * Annotations for Controllers.
 * jQuery & twitter bootstrap css / js or similar.
+* It is recommended to use this bundle with [SmirikAdminBundle](https://github.com/smirik/SmirikAdminBundle) which provides public assets (including twitter bootstrap & jquery) + menu + core classes.
 
 Installation
 ------------
 
-* Add bundle to your deps file:
+* Add bundle to your `deps` file:
 
-[SmirikQuizBundle]
-  git=git://github.com/smirik/SmirikQuizBundle.git
-  target=/bundles/Smirik/QuizBundle
+  ```
+  [SmirikQuizBundle]
+    git=git://github.com/smirik/SmirikQuizBundle.git
+    target=/bundles/Smirik/QuizBundle
+  ```
 
-* Register the namespace in autoload.php (if you don't use other Smirik* bundles):
+* Register the namespace in `autoload.php` (if you don't use other Smirik* bundles):
 
-$loader->registerNamespaces(array(
-    ...
-    'Smirik'           => __DIR__.'/../vendor/bundles',
-));
+  ```
+  $loader->registerNamespaces(array(
+      ...
+      'Smirik'           => __DIR__.'/../vendor/bundles',
+  ));
+  ```
 
-* Register bundle in your AppKernel.php:
+* Register bundle in your `AppKernel.php`:
 
-$bundles = array(
-    ...
-    new Smirik\QuizBundle\SmirikQuizBundle(),
-    ...
-);
+  ```
+  $bundles = array(
+      ...
+      new Smirik\QuizBundle\SmirikQuizBundle(),
+      ...
+  );
+  ```
 
-* Add the following code to config.yml:
+* Add the following code to `config.yml`:
 
   ```
   fos_user:
@@ -69,7 +76,7 @@ $bundles = array(
           - 'SmirikQuizBundle:Form:fields.html.twig'
   ```
 
-* Add routes to routing.yml:
+* Add routes to `routing.yml`:
 
  ```
   SmirikQuizBundle:
@@ -84,9 +91,9 @@ $bundles = array(
   php app/console doctrine:fixtures:load --append
   ```
 
-* See test quiz at http://host/admin/quiz/
+* See test quiz at `http://host/admin/quiz/`
 
-* Please check that bootstrap.css file is loaded. 
+* Please check that `bootstrap.css` file is loaded. 
     
 * Enjoy!
 
@@ -98,7 +105,7 @@ Database schema
 How to use
 ----------
 
-* Bundle has its own layout `Resources/views/layout.html.twig` extending base.html.twig. All templates extending this layout. All admin templates extends `Resources/views/Admin/layout.html.twig`.
+* Bundle has its own layout `Resources/views/layout.html.twig` extending `base.html.twig`. All templates extending this layout. All admin templates extends `Resources/views/Admin/layout.html.twig`.
 * There are 4 controllers:
   * AdminQuestionController (/admin/questions/*) for questions management,
   * AdminQuizController (/admin/quiz/*) for quizes management,
@@ -107,6 +114,11 @@ How to use
 * Access to all parts is granted just for authorized users.
 * Just ROLE_ADMIN users have access to /admin/* parts.
 * To start test quiz you should login (/login) and go to /quiz webpage.
+
+Roadmap
+-------
+
+* Comments, pulls, reviews, forks are welcome!
 
 License
 -------
