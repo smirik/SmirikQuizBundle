@@ -15,7 +15,7 @@ Features
 * Question & answer can have image.
 * Quiz could be limited by time (e.g. 10 minutes).
 * It is possible to hide quiz from users. The administrator can manually assign users to quiz.
-* Bundle is translated, see Resources/translations.
+* Bundle is translated, see Resources/translations. Some translations on english could be missed because of rapidly development.
 
 Requirements
 ------------
@@ -24,15 +24,32 @@ Requirements
 * Doctrine2, DoctrineExtension & DoctrineFixtures.
 * [FOSUserBundle](https://github.com/FriendsOfSymfony/FOSUserBundle) (please see the installation steps [here](https://github.com/FriendsOfSymfony/FOSUserBundle/blob/master/Resources/doc/index.md)).
 * Annotations for Controllers.
-* [SonatajQueryBundle](https://github.com/sonata-project/SonatajQueryBundle) or SonataAdminBundle with all dependences.
-* Twitter Bootstrap css file (or with the same styles).
+* jQuery & twitter bootstrap css / js or similar.
 
 Installation
 ------------
 
-**THIS IS TEMPORARY STEPS**
+* Add bundle to your deps file:
 
-* Copy files to src/Smirik/QuizBundle
+[SmirikQuizBundle]
+  git=git://github.com/smirik/SmirikQuizBundle.git
+  target=/bundles/Smirik/QuizBundle
+
+* Register the namespace in autoload.php (if you don't use other Smirik* bundles):
+
+$loader->registerNamespaces(array(
+    ...
+    'Smirik'           => __DIR__.'/../vendor/bundles',
+));
+
+* Register bundle in your AppKernel.php:
+
+$bundles = array(
+    ...
+    new Smirik\QuizBundle\SmirikQuizBundle(),
+    ...
+);
+
 * Add the following code to config.yml:
 
   ```
@@ -60,12 +77,16 @@ Installation
       type:     annotation
       prefix:   /
   ```
-* Update database and load fixtures
+* Update database and load test fixtures to see admin functionality
 
   ```
   php app/console doctrine:schema:update --force
   php app/console doctrine:fixtures:load --append
   ```
+
+* See test quiz at http://host/admin/quiz/
+
+* Please check that bootstrap.css file is loaded. 
     
 * Enjoy!
 
@@ -77,7 +98,7 @@ Database schema
 How to use
 ----------
 
-* Bundle has its own layout Resources/views/layout.html.twig extending base.html.twig. All templates extending this layout.
+* Bundle has its own layout `Resources/views/layout.html.twig` extending base.html.twig. All templates extending this layout. All admin templates extends `Resources/views/Admin/layout.html.twig`.
 * There are 4 controllers:
   * AdminQuestionController (/admin/questions/*) for questions management,
   * AdminQuizController (/admin/quiz/*) for quizes management,
