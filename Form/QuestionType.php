@@ -12,7 +12,7 @@ class QuestionType extends AbstractType
   {
     $builder
       ->add('quizes')
-      ->add('text', 'textarea', array('attr' => array('class' => 'tinymce xxlarge ylarge', 'tinymce' => '{"theme":"simple"}')))
+      ->add('text', 'textarea', array('attr' => array('class' => 'tinymce description', 'tinymce' => '{"theme":"simple"}')))
       ->add('type', 'choice', array(
         'choices' => array('text' => 'text', 'radio' => 'radio', 'checkbox' => 'checkbox')
       ))

@@ -34,7 +34,7 @@
   {% for entity in entities %}
   <tr>
     <td>{{ quiz }}</td>
-    <td>{{ entity.text }}</td>
+    <td>{{ entity.text|raw }}</td>
     <td>{{ entity.type }}</td>
     <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif%}</td>
     <td>
