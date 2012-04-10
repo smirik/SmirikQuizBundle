@@ -6,11 +6,12 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Smirik\QuizBundle\Entity\Answer;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadAnswerData extends AbstractFixture implements OrderedFixtureInterface
 {
   
-  public function load($manager)
+  public function load(ObjectManager $manager)
   {
     /**
     * Question 1 has text answer

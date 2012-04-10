@@ -6,11 +6,12 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Smirik\QuizBundle\Entity\User;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
 {
   
-  public function load($manager)
+  public function load(ObjectManager $manager)
   {
 
     $user = new User();

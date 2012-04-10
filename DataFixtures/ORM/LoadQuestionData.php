@@ -6,11 +6,12 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Smirik\QuizBundle\Entity\Question;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterface
 {
   
-  public function load($manager)
+  public function load(ObjectManager $manager)
   {
     $question = new Question();
     $question->addQuiz($this->getReference('test_quiz'));
