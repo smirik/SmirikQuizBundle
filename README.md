@@ -1,3 +1,7 @@
+This bundle is not supported anymore. Use [lms42](https://github.com/lms42/SmirikQuizBundle) version.
+-------
+
+
 QuizBundle
 ==========
 
